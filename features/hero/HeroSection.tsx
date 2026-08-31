@@ -22,10 +22,10 @@ export function HeroSection() {
 
       {/* Tiêu đề & Nội dung trung tâm */}
       <div className="z-10 text-center">
-        <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-text-black tracking-tighter leading-none">
+        <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-text-black leading-none">
           Hi, I'm Duong Le
         </h1>
-        <h2 className="text-2xl md:text-3xl font-medium text-text-black tracking-tighter mt-2">
+        <h2 className="text-2xl md:text-3xl font-medium text-text-black mt-2">
           Software Engineer
         </h2>
       </div>
@@ -34,11 +34,11 @@ export function HeroSection() {
       <div className="absolute bottom-8 left-4 flex flex-col gap-3 z-20">
         <Link 
           href="mailto:letungduong1624@gmail.com"
-          target="_blank"
+          target="_blank" 
           rel="noopener noreferrer"
           aria-label="Send email"
         >
-          <TbMailOpenedFilled className="text-3xl sm:text-4xl md:text-5xl text-text-black hover:text-text-accent transition-colors duration-300" />
+          <TbMailOpenedFilled className="text-3xl sm:text-4xl md:text-5xl text-text-black hover:opacity-60 transition-opacity duration-200" />
         </Link>
 
         <Link 
@@ -47,7 +47,7 @@ export function HeroSection() {
           rel="noopener noreferrer"
           aria-label="LinkedIn profile"
         >
-          <FaLinkedin className="text-3xl sm:text-4xl md:text-5xl text-text-black hover:text-text-accent transition-colors duration-300" />
+          <FaLinkedin className="text-3xl sm:text-4xl md:text-5xl text-text-black hover:opacity-60 transition-opacity duration-200" />
         </Link>
 
         <Link 
@@ -56,15 +56,15 @@ export function HeroSection() {
           rel="noopener noreferrer"
           aria-label="GitHub profile"
         >
-          <FaGithubSquare className="text-3xl sm:text-4xl md:text-5xl text-text-black hover:text-text-accent transition-colors duration-300" />
+          <FaGithubSquare className="text-3xl sm:text-4xl md:text-5xl text-text-black hover:opacity-60 transition-opacity duration-200" />
         </Link>
       </div>
 
       <div className="absolute bottom-8 right-8 text-right z-20 w-[60%]">
-        <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-tight leading-snug text-text-black">
+        <p className="text-xl md:text-2xl lg:text-4xl font-bold leading-snug text-text-black">
           Building scalable web apps with clean architecture —
         </p>
-        <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-tight leading-snug text-text-accent">
+        <p className="text-xl md:text-2xl lg:text-4xl font-bold leading-snug text-text-black/75">
           bridging smooth frontend with high-performance backends.
         </p>
       </div>

@@ -14,14 +14,14 @@ export default function Home() {
         <div className="section h-full" data-anchor="hero">
           <HeroSection />
         </div>
-        <div className="section" data-anchor="skills">
-          <SkillsSection />
+        <div className="section" data-anchor="projects">
+          <ProjectsSection />
         </div>
         <div className="section" data-anchor="services">
           <ServicesSection />
         </div>
-        <div className="section" data-anchor="projects">
-          <ProjectsSection />
+        <div className="section" data-anchor="skills">
+          <SkillsSection />
         </div>
         <div className="section" data-anchor="about">
           <AboutSection />

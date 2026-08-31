@@ -11,9 +11,9 @@ import {
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "#skills", anchor: "skills", label: "Skills" },
-  { href: "#services", anchor: "services", label: "Services" },
   { href: "#projects", anchor: "projects", label: "Projects" },
+  { href: "#services", anchor: "services", label: "Services" },
+  { href: "#skills", anchor: "skills", label: "Skills" },
   { href: "#about", anchor: "about", label: "About" },
 ];
 
@@ -34,16 +34,10 @@ export function Navbar() {
             if (api?.moveTo) api.moveTo("hero");
             else window.location.hash = "#hero";
           }}
-          className="group text-lg md:text-2xl font-bold transition-colors duration-400"
+          className="group text-lg md:text-2xl font-bold transition-opacity duration-300 hover:opacity-75"
         >
-          {/* Duong: Ban đầu Đen -> Hover cụm đổi sang Cam */}
-          <span className="text-text-black group-hover:text-text-accent transition-colors duration-400">
-            Duong
-          </span>
-          {/* Le: Ban đầu Cam -> Hover cụm đổi sang Đen */}
-          <span className="text-text-accent group-hover:text-text-black transition-colors duration-400">
-            Le
-          </span>
+          <span className="text-text-black">Duong</span>
+          <span className="text-text-black/50">Le</span>
         </Link>
 
         <NavigationMenu>
@@ -68,7 +62,7 @@ export function Navbar() {
                   }
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "md:text-xl text-text-black hover:text-text-accent transition-colors duration-400"
+                    "md:text-xl text-text-black hover:opacity-60 transition-opacity duration-300"
                   )}
                 >
                   {link.label}

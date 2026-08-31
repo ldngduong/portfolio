@@ -82,10 +82,10 @@ export function SkillsSection() {
               {/* Skill Cha Header */}
               <div className="flex justify-end items-center">
                 <h1
-                  className={`font-bold text-2xl sm:text-3xl md:text-5xl tracking-tight transition-colors duration-300 ${
+                  className={`font-bold text-2xl sm:text-3xl md:text-5xl transition-all duration-300 text-text-black ${
                     isActive
-                      ? 'text-text-accent'
-                      : 'text-text-black group-hover:text-text-accent'
+                      ? 'underline decoration-2 underline-offset-8'
+                      : ''
                   }`}
                 >
                   {item.title}
@@ -106,7 +106,7 @@ export function SkillsSection() {
                     className="w-full overflow-hidden flex flex-col items-end"
                   >
                     <div className="pt-4 pb-2 w-full flex flex-col items-end">
-                      <ul className="flex flex-col items-end space-y-2 font-bold text-text-black text-lg sm:text-xl md:text-2xl tracking-tight">
+                      <ul className="flex flex-col items-end space-y-2 font-bold text-text-black text-lg sm:text-xl md:text-2xl">
                         {item.skills.map((skill, idx) => (
                           <motion.li
                             key={idx}
@@ -116,7 +116,7 @@ export function SkillsSection() {
                               duration: 0.2,
                               delay: idx * 0.03,
                             }}
-                            className="hover:text-text-accent transition-colors"
+                            className="hover:underline transition-all cursor-pointer"
                           >
                             {skill}
                           </motion.li>

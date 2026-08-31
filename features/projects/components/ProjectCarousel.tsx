@@ -7,6 +7,7 @@ import {
   CarouselItem,
   type CarouselApi,
 } from '@/components/ui/carousel';
+import { ArrowUpRight } from 'lucide-react';
 import type { ProjectItem } from '../types';
 
 interface ProjectCarouselProps {
@@ -22,7 +23,7 @@ export const ProjectCarousel = forwardRef<HTMLDivElement, ProjectCarouselProps>(
     return (
       <div
         ref={ref}
-        className="lg:col-span-6 flex flex-col justify-center min-h-[340px] w-full touch-pan-y order-2 lg:order-1"
+        className="lg:col-span-6 flex flex-col justify-center min-h-[360px] w-full touch-pan-y order-2 lg:order-1"
       >
         <Carousel
           setApi={setApi}
@@ -36,23 +37,67 @@ export const ProjectCarousel = forwardRef<HTMLDivElement, ProjectCarouselProps>(
           <CarouselContent>
             {projects.map((project) => (
               <CarouselItem key={project.id} className="w-full">
-                <div
-                  onClick={() => onProjectClick(project)}
-                  className="cursor-pointer group flex flex-col justify-center items-end text-right min-h-[200px] py-2"
-                >
-                  <span className="text-xs font-bold text-text-accent mb-1">{project.id}</span>
+                <div className="flex flex-col justify-center items-end min-h-[240px] py-2">
+                  <div className="flex flex-col items-start text-left max-w-lg w-full">
+                    {/* Title (Căn trái) */}
+                    <h2
+                      onClick={() => onProjectClick(project)}
+                      className="text-4xl sm:text-5xl md:text-6xl font-bold text-text-black hover:opacity-75 transition-opacity duration-200 cursor-pointer text-left leading-tight"
+                    >
+                      {project.title}
+                    </h2>
 
-                  <h1 className="text-4xl md:text-5xl font-bold text-text-black tracking-tight group-hover:text-text-accent transition-colors text-right">
-                    {project.title}
-                  </h1>
+                    {/* Description (Căn trái) */}
+                    <p className="text-sm sm:text-base text-text-black/85 mt-3 text-left leading-relaxed font-normal">
+                      {project.description}
+                    </p>
 
-                  <p className="text-xs md:text-sm text-text-black/60 font-normal mt-3 text-right max-w-md line-clamp-2">
-                    {project.description}
-                  </p>
+                    {/* Tech Stack Pills (Căn trái) */}
+                    <div className="mt-4 flex flex-wrap justify-start gap-1.5">
+                      {project.techStack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-2.5 py-0.5 text-xs font-medium rounded-sm border border-text-black/20 text-text-black/85 bg-text-black/[0.03] hover:border-text-black/50 transition-colors select-none"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
 
-                  <div className="mt-6 flex items-center justify-end gap-1 text-xs font-semibold text-text-black/60 group-hover:text-text-accent transition-colors">
-                    <span>View Details</span>
-                    <span>→</span>
+                    {/* Action Links (Căn trái) */}
+                    <div className="mt-5 flex items-center justify-start gap-4 text-xs font-bold">
+                      {project.demoUrl && (
+                        <a
+                          href={project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-text-black hover:opacity-60 transition-opacity duration-200"
+                        >
+                          <span>Live Demo</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+
+                      {project.githubUrl && (
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-text-black/80 hover:text-text-black transition-colors duration-200"
+                        >
+                          <span>Source</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      )}
+
+                      <button
+                        onClick={() => onProjectClick(project)}
+                        className="inline-flex items-center gap-1 text-text-black hover:underline cursor-pointer font-bold"
+                      >
+                        <span>View Details</span>
+                        <span>→</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </CarouselItem>
@@ -60,18 +105,18 @@ export const ProjectCarousel = forwardRef<HTMLDivElement, ProjectCarouselProps>(
           </CarouselContent>
         </Carousel>
 
-        {/* DOTS INDICATOR (CĂN PHẢI) */}
-        <div className="mt-2 flex justify-end">
-          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-text-black/5 border border-text-black/10">
-            {projects.map((_, index) => (
+        {/* MINIMALIST DOT INDICATORS (CĂN TRÁI CÙNG KHỐI TEXT) */}
+        <div className="mt-6 flex items-center justify-end w-full">
+          <div className="flex items-center justify-start gap-2 max-w-lg w-full">
+            {projects.map((project, index) => (
               <button
-                key={index}
+                key={project.id}
                 onClick={() => api?.scrollTo(index)}
-                aria-label={`Go to slide ${index + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
+                aria-label={`Go to slide ${index + 1}: ${project.title}`}
+                className={`transition-all duration-300 rounded-full cursor-pointer ${
                   currentSlide === index
-                    ? 'w-5 bg-text-black'
-                    : 'w-1.5 bg-text-black/20 hover:bg-text-black/40'
+                    ? 'w-6 sm:w-8 h-2 bg-text-black'
+                    : 'w-2 h-2 bg-text-black/30 hover:bg-text-black/60'
                 }`}
               />
             ))}

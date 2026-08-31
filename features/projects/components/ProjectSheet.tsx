@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
 import {
   Sheet,
   SheetContent,
-  SheetHeader,
   SheetTitle,
-  SheetDescription,
 } from '@/components/ui/sheet';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import type { ProjectItem } from '../types';
 
 interface ProjectSheetProps {
@@ -19,14 +19,17 @@ interface ProjectSheetProps {
 export function ProjectSheet({ project, onOpenChange }: ProjectSheetProps) {
   return (
     <Sheet open={!!project} onOpenChange={onOpenChange}>
-      <SheetContent 
-        className="w-full sm:max-w-md flex flex-col p-0 bg-background border-l border-text-black/10 overflow-y-auto
-        [&>button]:bg-white [&>button]:shadow-lg [&>button]:border [&>button]:border-black/5 [&>button]:rounded-full [&>button]:z-50 [&>button]:top-4 [&>button]:right-4 [&>button]:opacity-100 [&>button]:hover:bg-gray-50 transition-all"
+      <SheetContent
+        side="right"
+        className="w-full sm:max-w-md h-full max-h-screen flex flex-col p-0 bg-background border-l border-text-black/10 overflow-hidden z-50
+        [&>button]:bg-white [&>button]:shadow-md [&>button]:border [&>button]:border-black/10 [&>button]:rounded-full [&>button]:z-50 [&>button]:top-4 [&>button]:right-4 [&>button]:opacity-90 [&>button]:hover:opacity-100 transition-all"
+        onWheel={(e) => e.stopPropagation()}
+        onTouchMove={(e) => e.stopPropagation()}
       >
         {project && (
-          <>
-            {/* Ảnh tràn viền (Full width) */}
-            <div className="relative w-full aspect-[16/10] shrink-0">
+          <div className="flex flex-col h-full w-full overflow-hidden">
+            {/* Sticky Top: Project Cover Image with Dark Gradient & Title Overlay */}
+            <div className="relative w-full aspect-[16/10] shrink-0 border-b border-text-black/10 bg-neutral-900 select-none overflow-hidden">
               <Image
                 src={project.image}
                 alt={project.title}
@@ -34,32 +37,66 @@ export function ProjectSheet({ project, onOpenChange }: ProjectSheetProps) {
                 className="object-cover"
                 priority
               />
-              {/* Lớp overlay nhẹ phía trên ảnh để nút X nổi bật hơn nếu cần */}
-              <div className="absolute inset-0 bg-black/5" />
+
+              {/* Dark Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
+
+              {/* Project Title Overlay */}
+              <div className="absolute bottom-4 left-5 right-5 z-10">
+                <SheetTitle className="text-2xl sm:text-3xl font-bold text-white leading-tight drop-shadow-sm">
+                  {project.title}
+                </SheetTitle>
+              </div>
             </div>
 
-            {/* Nội dung bên dưới - Padding nhỏ lại (p-5) */}
-            <div className="flex flex-col flex-1 p-5 gap-5">
-              <div className="space-y-4">
-                <SheetHeader className="p-0 text-left">
-                  <SheetTitle className="text-2xl font-bold text-text-black tracking-tight">
-                    {project.title}
-                  </SheetTitle>
-                </SheetHeader>
+            {/* Middle: Shadcn ScrollArea (Isolated Scroll Container) */}
+            <ScrollArea
+              className="flex-1 min-h-0 w-full"
+              onWheel={(e) => e.stopPropagation()}
+              onTouchMove={(e) => e.stopPropagation()}
+            >
+              <div className="p-5 sm:p-6 space-y-6">
+                {/* Description */}
+                <div className="space-y-1.5">
+                  <span className="text-xs font-semibold text-text-black/50 block">
+                    Description
+                  </span>
+                  <p className="text-xs text-text-black/75 leading-relaxed font-normal">
+                    {project.description}
+                  </p>
+                </div>
 
-                <SheetDescription className="text-sm text-text-black/70 leading-relaxed">
-                  {project.description}
-                </SheetDescription>
+                {/* Key Features: Clean Minimalist Editorial Layout (No Box Borders) */}
+                {project.features && project.features.length > 0 && (
+                  <div className="space-y-3 pt-1">
+                    <span className="text-xs font-semibold text-text-black/50 block">
+                      Key Features
+                    </span>
+                    <div className="space-y-3.5">
+                      {project.features.map((feature, idx) => (
+                        <div key={idx} className="space-y-0.5">
+                          <span className="text-xs font-bold text-text-black block">
+                            {feature.title}
+                          </span>
+                          <p className="text-xs text-text-black/75 leading-relaxed font-normal">
+                            {feature.description}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
-                <div className="space-y-3">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-text-black/30 block">
+                {/* Technologies */}
+                <div className="space-y-2.5 pt-1">
+                  <span className="text-xs font-semibold text-text-black/50 block">
                     Technologies
                   </span>
                   <div className="flex flex-wrap gap-1.5">
                     {project.techStack.map((tech, idx) => (
                       <span
                         key={idx}
-                        className="text-[11px] font-medium px-2 py-1 bg-text-black/[0.03] text-text-black/80 rounded border border-text-black/5"
+                        className="px-2.5 py-0.5 text-xs font-medium rounded-sm border border-text-black/20 text-text-black/85 bg-text-black/[0.03] hover:border-text-black/50 transition-colors select-none"
                       >
                         {tech}
                       </span>
@@ -67,22 +104,35 @@ export function ProjectSheet({ project, onOpenChange }: ProjectSheetProps) {
                   </div>
                 </div>
               </div>
+            </ScrollArea>
 
-              {/* Nút Live Demo - Đẩy xuống cuối */}
-              <div className="mt-auto pt-4">
-                {project.demoUrl && (
-                  <Link
-                    href={project.demoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block w-full text-center px-6 py-3.5 text-sm font-bold text-white bg-text-accent hover:brightness-110 rounded-xl transition-all shadow-sm"
-                  >
-                    Live Demo
-                  </Link>
-                )}
-              </div>
+            {/* Sticky Bottom: Action Buttons */}
+            <div className="p-4 sm:p-5 border-t border-text-black/10 bg-background shrink-0 flex flex-col gap-2.5">
+              {project.demoUrl && (
+                <Link
+                  href={project.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full text-center px-5 py-2.5 text-xs font-bold text-white bg-text-black hover:bg-neutral-800 rounded-sm transition-all shadow-sm"
+                >
+                  <span>Live Demo</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
+              )}
+
+              {project.githubUrl && (
+                <Link
+                  href={project.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 w-full text-center px-5 py-2.5 text-xs font-bold text-text-black bg-transparent hover:bg-text-black/[0.05] rounded-sm border border-text-black/20 transition-colors"
+                >
+                  <span>Source Code</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </Link>
+              )}
             </div>
-          </>
+          </div>
         )}
       </SheetContent>
     </Sheet>

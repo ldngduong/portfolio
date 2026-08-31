@@ -27,7 +27,6 @@ export function ProjectsSection() {
 
   useEffect(() => {
     if (!api) return;
-    onSelect();
     api.on('select', onSelect);
     return () => {
       api.off('select', onSelect);
@@ -98,14 +97,15 @@ export function ProjectsSection() {
   }, [api]);
 
   return (
-    <section className="px-6 md:px-12 py-16 relative flex min-h-screen w-full items-center justify-center bg-background">
-      <div className="w-full flex flex-col justify-center relative">
-        {/* Title My projects căn phải */}
-        <div className="flex justify-end w-full mb-12">
-          <h1 className="text-4xl font-bold text-text-black/50 italic text-right">My projects</h1>
-        </div>
+    <section className="p-6 relative flex h-screen w-full items-center justify-center overflow-hidden bg-background">
+      <div className="w-full flex flex-col justify-center items-center relative">
+        {/* Title My projects ngay phía trên các items */}
+        <h1 className="text-4xl font-bold text-text-black/50 italic text-center mb-8 lg:mb-10">
+          My projects
+        </h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
+        {/* Khối Text & Monitor trung tâm */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center justify-center w-full max-w-[1280px]">
           {/* BÊN TRÁI: SHADCN CAROUSEL */}
           <ProjectCarousel
             ref={carouselContainerRef}
