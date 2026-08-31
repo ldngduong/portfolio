@@ -2,9 +2,9 @@ import Image from "next/image";
 import HeroImage from "../../public/hero1hero.png";
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 import { TbMailOpenedFilled } from "react-icons/tb";
+import { IoIosArrowDropdown } from "react-icons/io";
 
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
@@ -16,7 +16,7 @@ export function HeroSection() {
           src={HeroImage}
           alt="Hero"
           priority
-          className="h-full w-auto max-w-none [mask-image:linear-gradient(to_bottom,black_70%,transparent_100%)]" 
+          className="h-full w-auto max-w-none mask-[linear-gradient(to_bottom,black_70%,transparent_100%)]" 
         />
       </div>
 
@@ -25,7 +25,9 @@ export function HeroSection() {
         <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-text-black tracking-tighter leading-none">
           Hi, I'm Duong Le
         </h1>
-        <h2 className="text-3xl font-medium text-text-black tracking-tighter">Software Engineer</h2>
+        <h2 className="text-2xl md:text-3xl font-medium text-text-black tracking-tighter mt-2">
+          Software Engineer
+        </h2>
       </div>
 
       {/* Social Links bên góc trái */}
@@ -36,7 +38,7 @@ export function HeroSection() {
           rel="noopener noreferrer"
           aria-label="Send email"
         >
-          <TbMailOpenedFilled className="text-5xl text-text-black hover:opacity-80 transition-opacity aspect-[1/1]" />
+          <TbMailOpenedFilled className="text-3xl sm:text-4xl md:text-5xl text-text-black hover:text-text-accent transition-colors duration-300" />
         </Link>
 
         <Link 
@@ -45,7 +47,7 @@ export function HeroSection() {
           rel="noopener noreferrer"
           aria-label="LinkedIn profile"
         >
-          <FaLinkedin className="text-5xl text-text-black hover:opacity-80 transition-opacity" />
+          <FaLinkedin className="text-3xl sm:text-4xl md:text-5xl text-text-black hover:text-text-accent transition-colors duration-300" />
         </Link>
 
         <Link 
@@ -54,13 +56,23 @@ export function HeroSection() {
           rel="noopener noreferrer"
           aria-label="GitHub profile"
         >
-          <FaGithubSquare className="text-5xl text-text-black hover:opacity-80 transition-opacity" />
+          <FaGithubSquare className="text-3xl sm:text-4xl md:text-5xl text-text-black hover:text-text-accent transition-colors duration-300" />
         </Link>
       </div>
 
+      <div className="absolute bottom-8 right-8 text-right z-20 w-[60%]">
+        <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-tight leading-snug text-text-black">
+          Building scalable web apps with clean architecture —
+        </p>
+        <p className="text-xl md:text-2xl lg:text-4xl font-bold tracking-tight leading-snug text-text-accent">
+          bridging smooth frontend with high-performance backends.
+        </p>
+      </div>
+
+      {/* Gradient Overlay dưới đáy */}
       <div 
         aria-hidden="true"
-        className="z-50 absolute bottom-0 left-0 right-0 h-20 md:h-30 bg-gradient-to-t from-background via-background/70 to-transparent pointer-events-none z-[5]" 
+        className="absolute bottom-0 left-0 right-0 h-20 md:h-30 bg-gradient-to-t from-background via-background/70 to-transparent pointer-events-none z-[5]" 
       />
     </section>
   );

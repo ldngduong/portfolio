@@ -143,3 +143,13 @@ nextjs-portal {
     @apply font-sans;
   }
 }
+
+/* fullPage.js watermark - hide when license invalid (credits.enabled:false alone still shows if licenseKey invalid) */
+.fp-watermark {
+  display: none !important;
+}
+
+/* hide fullPage dots - tắt hẳn theo yêu cầu */
+#fp-nav {
+  display: none !important;
+}
