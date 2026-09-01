@@ -34,7 +34,7 @@ export function GrainOverlay() {
     let currentX = -1000;
     let currentY = -1000;
     let isInside = false;
-    const CLEAR_RADIUS = 120; // Bán kính vùng sáng trắng không có nhiễu
+    const CLEAR_RADIUS = 100; // Bán kính vùng làm sạch nhiễu nhẹ nhàng quanh chuột
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -105,7 +105,7 @@ export function GrainOverlay() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
 
-      // Xóa sạch 100% hạt nhiễu trong hình tròn quanh con trỏ chuột
+      // Xóa hạt nhiễu nhẹ nhàng quanh chuột trên desktop
       if (isInside && currentX > -300 && currentY > -300) {
         ctx.save();
         ctx.globalCompositeOperation = 'destination-out';
@@ -117,9 +117,8 @@ export function GrainOverlay() {
           currentY,
           CLEAR_RADIUS
         );
-        grad.addColorStop(0, 'rgba(0, 0, 0, 1)');
-        grad.addColorStop(0.65, 'rgba(0, 0, 0, 1)');
-        grad.addColorStop(0.9, 'rgba(0, 0, 0, 0.4)');
+        grad.addColorStop(0, 'rgba(0, 0, 0, 0.8)');
+        grad.addColorStop(0.6, 'rgba(0, 0, 0, 0.5)');
         grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = grad;
         ctx.beginPath();
@@ -143,18 +142,18 @@ export function GrainOverlay() {
 
   return (
     <>
-      {/* Vầng sáng nền trắng (#FFFFFF) nằm phía sau các phần tử (Behind Content) - Độ sáng dịu nhẹ */}
+      {/* Vầng sáng dịu nhẹ chỉ hiển thị trên Desktop (Ẩn hoàn toàn trên Touch/Mobile để không che shape) */}
       <div
         ref={spotlightRef}
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-0 rounded-full opacity-0 transition-opacity duration-200 select-none will-change-transform bg-white/75 shadow-[0_0_45px_20px_rgba(255,255,255,0.75)]"
+        className="pointer-events-none fixed top-0 left-0 z-0 rounded-full opacity-0 transition-opacity duration-200 select-none will-change-transform bg-white/25 shadow-[0_0_30px_10px_rgba(255,255,255,0.3)] hidden lg:block"
         style={{
-          width: '150px',
-          height: '150px',
+          width: '120px',
+          height: '120px',
         }}
       />
 
-      {/* Lớp hạt nhiễu toàn màn hình với lỗ tròn trong suốt theo chuột */}
+      {/* Lớp hạt nhiễu toàn màn hình */}
       <canvas
         ref={canvasRef}
         aria-hidden="true"

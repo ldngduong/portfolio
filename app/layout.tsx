@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto, Geist_Mono } from "next/font/google";
 import { GrainOverlay } from "@/components/common/GrainOverlay";
+import { LoadingScreen } from "@/components/common/LoadingScreen";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${roboto.variable} ${geistMono.variable} antialiased`}
     >
       <body className="font-sans bg-background text-foreground relative">
+        <LoadingScreen />
         <GrainOverlay />
         {children}
       </body>

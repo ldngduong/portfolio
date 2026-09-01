@@ -82,19 +82,15 @@ export function ServicesSection() {
     setActiveId((prev) => (prev === id ? null : id));
   };
 
-  // Render pictographic SVG shape designs directly representing each service (Đậm nét, tương phản rõ)
-  const renderPictographicShape = (id: string, isOpen: boolean) => {
+  // Render pictographic SVG shape designs directly representing each service (Luôn hiện rõ nét, đậm và không bao giờ bị ẩn)
+  const renderPictographicShape = (id: string) => {
     switch (id) {
       case '01':
         // Tall Vertical Layout: Desktop Browser + Mobile Wireframe
         return (
-          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0 max-h-[12vh] sm:max-h-[16vh] lg:max-h-[22vh]' : 'py-0.5 sm:py-2 max-h-[20vh] sm:max-h-[28vh]'}`}>
+          <div className="w-full my-auto py-1 flex items-center justify-center pointer-events-none">
             <svg
-              className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
-                isOpen
-                  ? 'h-10 sm:h-16 md:h-20 lg:h-28 max-w-[100px] sm:max-w-[140px]'
-                  : 'h-14 sm:h-22 md:h-30 lg:h-40 max-w-[130px] sm:max-w-[180px] lg:max-w-[220px]'
-              }`}
+              className="w-full text-text-black/90 group-hover:text-text-black transition-colors duration-300 h-16 sm:h-22 md:h-30 lg:h-40 max-w-[130px] sm:max-w-[180px] lg:max-w-[220px]"
               viewBox="0 0 200 150"
               fill="none"
             >
@@ -212,13 +208,9 @@ export function ServicesSection() {
       case '02':
         // Wide Banner Layout: SaaS Dashboard with Multi-Column Analytics
         return (
-          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5 sm:py-1'}`}>
+          <div className="w-full my-auto py-1 flex items-center justify-center pointer-events-none">
             <svg
-              className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
-                isOpen
-                  ? 'h-6 sm:h-10 lg:h-14 max-w-[120px] sm:max-w-xs'
-                  : 'h-10 sm:h-14 lg:h-18 max-w-[160px] sm:max-w-sm lg:max-w-md'
-              }`}
+              className="w-full text-text-black/90 group-hover:text-text-black transition-colors duration-300 h-10 sm:h-14 lg:h-18 max-w-[160px] sm:max-w-sm lg:max-w-md"
               viewBox="0 0 340 75"
               fill="none"
             >
@@ -437,13 +429,9 @@ export function ServicesSection() {
       case '03':
         // Website Clone & Replication: Syncing Windows
         return (
-          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5'}`}>
+          <div className="w-full my-auto py-1 flex items-center justify-center pointer-events-none">
             <svg
-              className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
-                isOpen
-                  ? 'h-0 opacity-0 sm:h-4 sm:opacity-50 md:h-6 lg:h-7 max-w-[70px]'
-                  : 'h-6 sm:h-8 md:h-10 lg:h-12 max-w-[90px] sm:max-w-[110px]'
-              }`}
+              className="w-full text-text-black/90 group-hover:text-text-black transition-colors duration-300 h-7 sm:h-9 md:h-10 lg:h-12 max-w-[95px] sm:max-w-[115px]"
               viewBox="0 0 130 50"
               fill="none"
             >
@@ -547,13 +535,9 @@ export function ServicesSection() {
       case '04':
         // Figma to Production Code
         return (
-          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5'}`}>
+          <div className="w-full my-auto py-1 flex items-center justify-center pointer-events-none">
             <svg
-              className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
-                isOpen
-                  ? 'h-0 opacity-0 sm:h-4 sm:opacity-50 md:h-6 lg:h-7 max-w-[70px]'
-                  : 'h-6 sm:h-8 md:h-10 lg:h-12 max-w-[90px] sm:max-w-[110px]'
-              }`}
+              className="w-full text-text-black/90 group-hover:text-text-black transition-colors duration-300 h-7 sm:h-9 md:h-10 lg:h-12 max-w-[95px] sm:max-w-[115px]"
               viewBox="0 0 130 50"
               fill="none"
             >
@@ -621,13 +605,9 @@ export function ServicesSection() {
       case '05':
         // Maintenance & Optimization: Speedometer Dial & Sparkline
         return (
-          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5'}`}>
+          <div className="w-full my-auto py-1 flex items-center justify-center pointer-events-none">
             <svg
-              className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
-                isOpen
-                  ? 'h-0 opacity-0 sm:h-4 sm:opacity-50 md:h-6 lg:h-7 max-w-[70px]'
-                  : 'h-6 sm:h-8 md:h-10 lg:h-12 max-w-[90px] sm:max-w-[110px]'
-              }`}
+              className="w-full text-text-black/90 group-hover:text-text-black transition-colors duration-300 h-7 sm:h-9 md:h-10 lg:h-12 max-w-[95px] sm:max-w-[115px]"
               viewBox="0 0 130 50"
               fill="none"
             >
@@ -684,13 +664,9 @@ export function ServicesSection() {
       case '06':
         // Other / Custom Request: Dialogue Node with Consultation Arrow
         return (
-          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5'}`}>
+          <div className="w-full my-auto py-1 flex items-center justify-center pointer-events-none">
             <svg
-              className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
-                isOpen
-                  ? 'h-0 opacity-0 sm:h-4 sm:opacity-50 md:h-6 lg:h-7 max-w-[70px]'
-                  : 'h-6 sm:h-8 md:h-10 lg:h-12 max-w-[90px] sm:max-w-[110px]'
-              }`}
+              className="w-full text-text-black/90 group-hover:text-text-black transition-colors duration-300 h-7 sm:h-9 md:h-10 lg:h-12 max-w-[95px] sm:max-w-[115px]"
               viewBox="0 0 130 50"
               fill="none"
             >
@@ -797,8 +773,8 @@ export function ServicesSection() {
                   </span>
                 </div>
 
-                {/* Pictographic Visual Shape Zone */}
-                {renderPictographicShape(service.id, isOpen)}
+                {/* Pictographic Visual Shape Zone (Luôn hiển thị rõ nét) */}
+                {renderPictographicShape(service.id)}
 
                 {/* Bottom Title & Expandable Description */}
                 <div className="flex flex-col justify-end w-full pt-0.5 sm:pt-1 shrink-0">
