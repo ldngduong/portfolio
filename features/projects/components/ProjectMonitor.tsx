@@ -21,6 +21,7 @@ export const ProjectMonitor = forwardRef<HTMLDivElement, ProjectMonitorProps>(
 
     return (
       <div className="lg:col-span-6 flex items-center justify-center [perspective:1400px] w-full order-1 lg:order-2 py-0 sm:py-2 lg:py-4 mx-auto max-w-[260px] sm:max-w-xs md:max-w-md lg:max-w-none">
+        <motion.div
           animate={{
             rotateY: -6,
             rotateX: 2,
