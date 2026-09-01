@@ -9,7 +9,7 @@ export function HeroSection() {
     <section className="p-4 sm:p-6 relative flex h-full min-h-0 w-full items-center justify-center overflow-hidden bg-transparent select-none">
       
       {/* Container chứa ảnh Hero */}
-      <div className="absolute bottom-0 flex items-end justify-center h-[72%] sm:h-[80%] md:h-[90%] pointer-events-none">
+      <div className="absolute bottom-0 flex items-end justify-center h-[90%] pointer-events-none">
         <Image
           src={HeroImage}
           alt="Hero"

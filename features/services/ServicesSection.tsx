@@ -88,12 +88,12 @@ export function ServicesSection() {
       case '01':
         // Tall Vertical Layout: Desktop Browser + Mobile Wireframe
         return (
-          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0 max-h-[14vh] sm:max-h-[18vh] lg:max-h-[22vh]' : 'py-1 sm:py-2 max-h-[24vh] sm:max-h-[30vh]'}`}>
+          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0 max-h-[12vh] sm:max-h-[16vh] lg:max-h-[22vh]' : 'py-0.5 sm:py-2 max-h-[20vh] sm:max-h-[28vh]'}`}>
             <svg
               className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
                 isOpen
-                  ? 'h-14 sm:h-20 md:h-24 lg:h-32 max-w-[120px] sm:max-w-[160px]'
-                  : 'h-20 sm:h-28 md:h-36 lg:h-44 max-w-[160px] sm:max-w-[200px] lg:max-w-[240px]'
+                  ? 'h-10 sm:h-16 md:h-20 lg:h-28 max-w-[100px] sm:max-w-[140px]'
+                  : 'h-14 sm:h-22 md:h-30 lg:h-40 max-w-[130px] sm:max-w-[180px] lg:max-w-[220px]'
               }`}
               viewBox="0 0 200 150"
               fill="none"
@@ -212,12 +212,12 @@ export function ServicesSection() {
       case '02':
         // Wide Banner Layout: SaaS Dashboard with Multi-Column Analytics
         return (
-          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-1'}`}>
+          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5 sm:py-1'}`}>
             <svg
               className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
                 isOpen
-                  ? 'h-8 sm:h-12 lg:h-16 max-w-[140px] sm:max-w-xs'
-                  : 'h-12 sm:h-16 lg:h-20 max-w-[200px] sm:max-w-md lg:max-w-lg'
+                  ? 'h-6 sm:h-10 lg:h-14 max-w-[120px] sm:max-w-xs'
+                  : 'h-10 sm:h-14 lg:h-18 max-w-[160px] sm:max-w-sm lg:max-w-md'
               }`}
               viewBox="0 0 340 75"
               fill="none"
@@ -437,12 +437,12 @@ export function ServicesSection() {
       case '03':
         // Website Clone & Replication: Syncing Windows
         return (
-          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5 sm:py-1'}`}>
+          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5'}`}>
             <svg
               className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
                 isOpen
-                  ? 'h-0 opacity-0 sm:h-5 sm:opacity-50 md:h-7 lg:h-8 max-w-[80px]'
-                  : 'h-8 sm:h-10 md:h-12 lg:h-14 max-w-[110px] sm:max-w-[130px]'
+                  ? 'h-0 opacity-0 sm:h-4 sm:opacity-50 md:h-6 lg:h-7 max-w-[70px]'
+                  : 'h-6 sm:h-8 md:h-10 lg:h-12 max-w-[90px] sm:max-w-[110px]'
               }`}
               viewBox="0 0 130 50"
               fill="none"
@@ -547,12 +547,12 @@ export function ServicesSection() {
       case '04':
         // Figma to Production Code
         return (
-          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5 sm:py-1'}`}>
+          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5'}`}>
             <svg
               className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
                 isOpen
-                  ? 'h-0 opacity-0 sm:h-5 sm:opacity-50 md:h-7 lg:h-8 max-w-[80px]'
-                  : 'h-8 sm:h-10 md:h-12 lg:h-14 max-w-[110px] sm:max-w-[130px]'
+                  ? 'h-0 opacity-0 sm:h-4 sm:opacity-50 md:h-6 lg:h-7 max-w-[70px]'
+                  : 'h-6 sm:h-8 md:h-10 lg:h-12 max-w-[90px] sm:max-w-[110px]'
               }`}
               viewBox="0 0 130 50"
               fill="none"
@@ -621,12 +621,12 @@ export function ServicesSection() {
       case '05':
         // Maintenance & Optimization: Speedometer Dial & Sparkline
         return (
-          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5 sm:py-1'}`}>
+          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5'}`}>
             <svg
               className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
                 isOpen
-                  ? 'h-0 opacity-0 sm:h-5 sm:opacity-50 md:h-7 lg:h-8 max-w-[80px]'
-                  : 'h-8 sm:h-10 md:h-12 lg:h-14 max-w-[110px] sm:max-w-[130px]'
+                  ? 'h-0 opacity-0 sm:h-4 sm:opacity-50 md:h-6 lg:h-7 max-w-[70px]'
+                  : 'h-6 sm:h-8 md:h-10 lg:h-12 max-w-[90px] sm:max-w-[110px]'
               }`}
               viewBox="0 0 130 50"
               fill="none"
@@ -684,12 +684,12 @@ export function ServicesSection() {
       case '06':
         // Other / Custom Request: Dialogue Node with Consultation Arrow
         return (
-          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5 sm:py-1'}`}>
+          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5'}`}>
             <svg
               className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
                 isOpen
-                  ? 'h-0 opacity-0 sm:h-5 sm:opacity-50 md:h-7 lg:h-8 max-w-[80px]'
-                  : 'h-8 sm:h-10 md:h-12 lg:h-14 max-w-[110px] sm:max-w-[130px]'
+                  ? 'h-0 opacity-0 sm:h-4 sm:opacity-50 md:h-6 lg:h-7 max-w-[70px]'
+                  : 'h-6 sm:h-8 md:h-10 lg:h-12 max-w-[90px] sm:max-w-[110px]'
               }`}
               viewBox="0 0 130 50"
               fill="none"
@@ -764,11 +764,11 @@ export function ServicesSection() {
   };
 
   return (
-    <section className="px-3 sm:px-6 pb-3 sm:pb-6 pt-14 sm:pt-18 lg:pt-20 relative flex flex-col h-screen w-full bg-transparent overflow-hidden justify-between select-none">
+    <section className="px-3 sm:px-6 pb-4 sm:pb-6 pt-14 sm:pt-18 lg:pt-20 relative flex flex-col h-full min-h-0 w-full bg-transparent overflow-hidden justify-between select-none">
       <div className="w-full h-full flex flex-col relative justify-between gap-1 sm:gap-2">
         {/* Header My services căn phải */}
         <div className="flex justify-end w-full mb-1 sm:mb-2 shrink-0">
-          <h1 className="text-3xl sm:text-4xl font-bold text-text-black/50 italic text-right">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-text-black/50 italic text-right">
             My services
           </h1>
         </div>
@@ -784,12 +784,12 @@ export function ServicesSection() {
                 onMouseEnter={() => setHoveredId(service.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 onClick={() => toggleActive(service.id)}
-                className={`${service.span} ${service.borderClass} h-full p-2 sm:p-3.5 lg:p-5 rounded-none bg-transparent hover:bg-text-black/[0.04] transition-colors duration-200 flex flex-col justify-between cursor-pointer select-none overflow-hidden relative group`}
+                className={`${service.span} ${service.borderClass} h-full p-2 sm:p-3 lg:p-4 rounded-none bg-transparent hover:bg-text-black/[0.04] transition-colors duration-200 flex flex-col justify-between cursor-pointer select-none overflow-hidden relative group`}
               >
                 {/* Top Row: Expand Icon */}
                 <div className="flex items-center justify-end w-full shrink-0 select-none">
                   <span
-                    className={`text-[10px] sm:text-xs lg:text-sm font-bold text-text-black/40 group-hover:text-text-black transition-all duration-300 ${
+                    className={`text-[9px] sm:text-xs lg:text-sm font-bold text-text-black/40 group-hover:text-text-black transition-all duration-300 ${
                       isOpen ? 'rotate-45 text-text-black' : ''
                     }`}
                   >
@@ -801,8 +801,8 @@ export function ServicesSection() {
                 {renderPictographicShape(service.id, isOpen)}
 
                 {/* Bottom Title & Expandable Description */}
-                <div className="flex flex-col justify-end w-full pt-1 shrink-0">
-                  <h2 className="text-[11px] sm:text-xs md:text-sm lg:text-base font-bold text-text-black leading-tight sm:leading-snug">
+                <div className="flex flex-col justify-end w-full pt-0.5 sm:pt-1 shrink-0">
+                  <h2 className="text-[10px] sm:text-xs md:text-sm lg:text-base font-bold text-text-black leading-tight sm:leading-snug">
                     {service.title}
                   </h2>
 
@@ -819,8 +819,8 @@ export function ServicesSection() {
                         }}
                         className="overflow-hidden w-full"
                       >
-                        <div className="pt-1 sm:pt-1.5 flex flex-col gap-1 sm:gap-1.5">
-                          <p className="text-[9.5px] sm:text-[11px] md:text-xs lg:text-[13px] text-text-black/75 font-normal leading-tight sm:leading-relaxed line-clamp-3 sm:line-clamp-4 lg:line-clamp-none">
+                        <div className="pt-0.5 sm:pt-1 flex flex-col gap-1 sm:gap-1.5">
+                          <p className="text-[9px] sm:text-[10.5px] md:text-xs lg:text-[13px] text-text-black/75 font-normal leading-tight sm:leading-relaxed line-clamp-3 sm:line-clamp-4 lg:line-clamp-none">
                             {service.description}
                           </p>
 
@@ -829,7 +829,7 @@ export function ServicesSection() {
                               <a
                                 href={service.actionHref}
                                 onClick={(e) => e.stopPropagation()}
-                                className="inline-flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 bg-text-black text-white hover:bg-neutral-800 text-[9.5px] sm:text-xs font-bold transition-all w-fit"
+                                className="inline-flex items-center gap-1 px-2 py-0.5 bg-text-black text-white hover:bg-neutral-800 text-[9px] sm:text-xs font-bold transition-all w-fit"
                               >
                                 <span>{service.actionText}</span>
                                 <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
