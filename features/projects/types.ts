@@ -2,7 +2,6 @@ import type { StaticImageData } from 'next/image';
 
 import seev from '../../public/project/seev.webp';
 import railflow from '../../public/project/railflow.webp';
-import clipy from '../../public/project/clipy.webp';
 
 export interface ProjectFeature {
   title: string;
@@ -92,38 +91,5 @@ export const PROJECTS_DATA: ProjectItem[] = [
     githubUrl: 'https://github.com/letungduong24/seev',
     demoUrl: 'https://seev.duongle.dev',
     image: seev,
-  },
-  {
-    id: '03',
-    title: 'Clipy',
-    category: 'Desktop Application',
-    description:
-      'A cross-platform desktop clipboard manager built with Tauri v2 and Rust, designed for fast performance and offline privacy.',
-    features: [
-      {
-        title: 'Global Shortcut & System Tray',
-        description:
-          'Runs in the background with native system tray persistence and instant access via a customizable hotkey (Cmd/Ctrl + Shift + V).',
-      },
-      {
-        title: 'Smart Content Categorization',
-        description:
-          'Automatically sorts copied items into text, links, code snippets, JSON, colors, and image previews with SHA-256 deduplication.',
-      },
-      {
-        title: 'Sensitive Data Shield',
-        description:
-          'Identifies passwords, API keys, and private tokens using regex heuristics to prevent accidental exposure.',
-      },
-      {
-        title: 'Local-First Privacy & Search',
-        description:
-          'Stores all data offline on your machine with sub-millisecond search and organized custom collections.',
-      },
-    ],
-    techStack: ['Tauri v2', 'Rust', 'React', 'TypeScript', 'Zustand', 'SQLite', 'Tailwind CSS'],
-    githubUrl: 'https://github.com/letungduong24/clipy',
-    demoUrl: 'https://github.com/letungduong24/clipy/releases',
-    image: clipy,
   },
 ];
