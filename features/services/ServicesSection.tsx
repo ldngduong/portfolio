@@ -40,7 +40,7 @@ const BENTO_SERVICES: BentoServiceItem[] = [
     description:
       'Rebuilding or modernizing reference websites with clean code architecture, custom identity, and high performance.',
     span: 'col-span-1 lg:col-span-2',
-    borderClass: 'border-r border-b lg:border-b-0 border-text-black/20',
+    borderClass: 'border-r border-b lg:border-b-0 lg:border-r border-text-black/20',
   },
   {
     id: '04',
@@ -82,15 +82,19 @@ export function ServicesSection() {
     setActiveId((prev) => (prev === id ? null : id));
   };
 
-  // Render pictographic SVG shape designs directly representing each service (High contrast & bold)
-  const renderPictographicShape = (id: string) => {
+  // Render pictographic SVG shape designs directly representing each service (Đậm nét, tương phản rõ)
+  const renderPictographicShape = (id: string, isOpen: boolean) => {
     switch (id) {
       case '01':
         // Tall Vertical Layout: Desktop Browser + Mobile Wireframe
         return (
-          <div className="w-full my-auto py-1 sm:py-2 flex items-center justify-center pointer-events-none">
+          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0 max-h-[14vh] sm:max-h-[18vh] lg:max-h-[22vh]' : 'py-1 sm:py-2 max-h-[24vh] sm:max-h-[30vh]'}`}>
             <svg
-              className="w-full max-w-[160px] sm:max-w-[200px] lg:max-w-[240px] h-20 sm:h-28 lg:h-44 text-text-black/75 group-hover:text-text-black transition-colors"
+              className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
+                isOpen
+                  ? 'h-14 sm:h-20 md:h-24 lg:h-32 max-w-[120px] sm:max-w-[160px]'
+                  : 'h-20 sm:h-28 md:h-36 lg:h-44 max-w-[160px] sm:max-w-[200px] lg:max-w-[240px]'
+              }`}
               viewBox="0 0 200 150"
               fill="none"
             >
@@ -102,10 +106,10 @@ export function ServicesSection() {
                 height="110"
                 rx="3"
                 stroke="currentColor"
-                strokeWidth="1.5"
-                strokeOpacity="0.75"
+                strokeWidth="1.8"
+                strokeOpacity="0.9"
                 fill="currentColor"
-                fillOpacity="0.06"
+                fillOpacity="0.1"
               />
               <line
                 x1="10"
@@ -113,12 +117,12 @@ export function ServicesSection() {
                 x2="155"
                 y2="24"
                 stroke="currentColor"
-                strokeWidth="1.2"
-                strokeOpacity="0.6"
+                strokeWidth="1.4"
+                strokeOpacity="0.75"
               />
-              <circle cx="20" cy="17" r="2" fill="currentColor" fillOpacity="0.85" />
-              <circle cx="27" cy="17" r="2" fill="currentColor" fillOpacity="0.6" />
-              <circle cx="34" cy="17" r="2" fill="currentColor" fillOpacity="0.6" />
+              <circle cx="20" cy="17" r="2.2" fill="currentColor" fillOpacity="0.95" />
+              <circle cx="27" cy="17" r="2.2" fill="currentColor" fillOpacity="0.75" />
+              <circle cx="34" cy="17" r="2.2" fill="currentColor" fillOpacity="0.75" />
 
               {/* Desktop Hero Lines */}
               <rect
@@ -128,7 +132,7 @@ export function ServicesSection() {
                 height="7"
                 rx="1.5"
                 fill="currentColor"
-                fillOpacity="0.85"
+                fillOpacity="0.9"
               />
               <rect
                 x="20"
@@ -137,7 +141,7 @@ export function ServicesSection() {
                 height="4.5"
                 rx="1.5"
                 fill="currentColor"
-                fillOpacity="0.55"
+                fillOpacity="0.65"
               />
               <rect
                 x="20"
@@ -146,7 +150,7 @@ export function ServicesSection() {
                 height="10"
                 rx="2"
                 fill="currentColor"
-                fillOpacity="0.95"
+                fillOpacity="1"
               />
 
               {/* Overlapping Mobile Device Frame */}
@@ -157,10 +161,10 @@ export function ServicesSection() {
                 height="98"
                 rx="6"
                 stroke="currentColor"
-                strokeWidth="1.6"
-                strokeOpacity="0.9"
+                strokeWidth="1.8"
+                strokeOpacity="0.95"
                 fill="currentColor"
-                fillOpacity="0.1"
+                fillOpacity="0.14"
               />
               <rect
                 x="142"
@@ -169,7 +173,7 @@ export function ServicesSection() {
                 height="3"
                 rx="1.5"
                 fill="currentColor"
-                fillOpacity="0.7"
+                fillOpacity="0.8"
               />
               <rect
                 x="125"
@@ -178,7 +182,7 @@ export function ServicesSection() {
                 height="5.5"
                 rx="1.5"
                 fill="currentColor"
-                fillOpacity="0.85"
+                fillOpacity="0.9"
               />
               <rect
                 x="125"
@@ -187,7 +191,7 @@ export function ServicesSection() {
                 height="4"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.5"
+                fillOpacity="0.65"
               />
               <rect
                 x="125"
@@ -196,10 +200,10 @@ export function ServicesSection() {
                 height="28"
                 rx="2"
                 stroke="currentColor"
-                strokeWidth="1.2"
-                strokeOpacity="0.65"
+                strokeWidth="1.4"
+                strokeOpacity="0.8"
                 fill="currentColor"
-                fillOpacity="0.08"
+                fillOpacity="0.12"
               />
             </svg>
           </div>
@@ -208,9 +212,13 @@ export function ServicesSection() {
       case '02':
         // Wide Banner Layout: SaaS Dashboard with Multi-Column Analytics
         return (
-          <div className="w-full my-auto py-1 flex items-center justify-center pointer-events-none">
+          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-1'}`}>
             <svg
-              className="w-full max-w-[200px] sm:max-w-md lg:max-w-lg h-16 sm:h-20 lg:h-24 text-text-black/75 group-hover:text-text-black transition-colors"
+              className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
+                isOpen
+                  ? 'h-8 sm:h-12 lg:h-16 max-w-[140px] sm:max-w-xs'
+                  : 'h-12 sm:h-16 lg:h-20 max-w-[200px] sm:max-w-md lg:max-w-lg'
+              }`}
               viewBox="0 0 340 75"
               fill="none"
             >
@@ -222,10 +230,10 @@ export function ServicesSection() {
                 height="65"
                 rx="3"
                 stroke="currentColor"
-                strokeWidth="1.5"
-                strokeOpacity="0.75"
+                strokeWidth="1.8"
+                strokeOpacity="0.9"
                 fill="currentColor"
-                fillOpacity="0.06"
+                fillOpacity="0.1"
               />
               {/* Sidebar */}
               <line
@@ -234,10 +242,10 @@ export function ServicesSection() {
                 x2="45"
                 y2="70"
                 stroke="currentColor"
-                strokeWidth="1.2"
-                strokeOpacity="0.6"
+                strokeWidth="1.4"
+                strokeOpacity="0.75"
               />
-              <circle cx="25" cy="16" r="3.5" fill="currentColor" fillOpacity="0.85" />
+              <circle cx="25" cy="16" r="3.5" fill="currentColor" fillOpacity="0.95" />
               <rect
                 x="15"
                 y="26"
@@ -245,7 +253,7 @@ export function ServicesSection() {
                 height="3"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.6"
+                fillOpacity="0.7"
               />
               <rect
                 x="15"
@@ -254,7 +262,7 @@ export function ServicesSection() {
                 height="3"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.6"
+                fillOpacity="0.7"
               />
               <rect
                 x="15"
@@ -263,7 +271,7 @@ export function ServicesSection() {
                 height="3"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.6"
+                fillOpacity="0.7"
               />
 
               {/* 3 Metric Stat Cards */}
@@ -274,10 +282,10 @@ export function ServicesSection() {
                 height="22"
                 rx="2"
                 stroke="currentColor"
-                strokeWidth="1.2"
-                strokeOpacity="0.6"
+                strokeWidth="1.4"
+                strokeOpacity="0.75"
                 fill="currentColor"
-                fillOpacity="0.08"
+                fillOpacity="0.12"
               />
               <rect
                 x="62"
@@ -286,7 +294,7 @@ export function ServicesSection() {
                 height="2.5"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.6"
+                fillOpacity="0.75"
               />
               <rect
                 x="62"
@@ -295,7 +303,7 @@ export function ServicesSection() {
                 height="4"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.9"
+                fillOpacity="0.95"
               />
 
               <rect
@@ -305,10 +313,10 @@ export function ServicesSection() {
                 height="22"
                 rx="2"
                 stroke="currentColor"
-                strokeWidth="1.2"
-                strokeOpacity="0.6"
+                strokeWidth="1.4"
+                strokeOpacity="0.75"
                 fill="currentColor"
-                fillOpacity="0.08"
+                fillOpacity="0.12"
               />
               <rect
                 x="118"
@@ -317,7 +325,7 @@ export function ServicesSection() {
                 height="2.5"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.6"
+                fillOpacity="0.75"
               />
               <rect
                 x="118"
@@ -326,7 +334,7 @@ export function ServicesSection() {
                 height="4"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.9"
+                fillOpacity="0.95"
               />
 
               <rect
@@ -336,10 +344,10 @@ export function ServicesSection() {
                 height="22"
                 rx="2"
                 stroke="currentColor"
-                strokeWidth="1.2"
-                strokeOpacity="0.6"
+                strokeWidth="1.4"
+                strokeOpacity="0.75"
                 fill="currentColor"
-                fillOpacity="0.08"
+                fillOpacity="0.12"
               />
               <rect
                 x="174"
@@ -348,7 +356,7 @@ export function ServicesSection() {
                 height="2.5"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.6"
+                fillOpacity="0.75"
               />
               <rect
                 x="174"
@@ -357,7 +365,7 @@ export function ServicesSection() {
                 height="4"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.9"
+                fillOpacity="0.95"
               />
 
               {/* Chart Section */}
@@ -368,16 +376,16 @@ export function ServicesSection() {
                 height="50"
                 rx="2"
                 stroke="currentColor"
-                strokeWidth="1.2"
-                strokeOpacity="0.6"
+                strokeWidth="1.4"
+                strokeOpacity="0.75"
                 fill="currentColor"
-                fillOpacity="0.08"
+                fillOpacity="0.12"
               />
               <path
                 d="M236,52 L250,40 L264,46 L280,28 L296,34 L312,22"
                 stroke="currentColor"
-                strokeWidth="1.8"
-                strokeOpacity="0.95"
+                strokeWidth="2.2"
+                strokeOpacity="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -390,10 +398,10 @@ export function ServicesSection() {
                 height="22"
                 rx="2"
                 stroke="currentColor"
-                strokeWidth="1.2"
-                strokeOpacity="0.6"
+                strokeWidth="1.4"
+                strokeOpacity="0.75"
                 fill="currentColor"
-                fillOpacity="0.08"
+                fillOpacity="0.12"
               />
               <line
                 x1="56"
@@ -401,8 +409,8 @@ export function ServicesSection() {
                 x2="218"
                 y2="53"
                 stroke="currentColor"
-                strokeWidth="0.8"
-                strokeOpacity="0.4"
+                strokeWidth="1"
+                strokeOpacity="0.6"
               />
               <rect
                 x="64"
@@ -411,7 +419,7 @@ export function ServicesSection() {
                 height="3"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.75"
+                fillOpacity="0.85"
               />
               <rect
                 x="64"
@@ -420,7 +428,7 @@ export function ServicesSection() {
                 height="3"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.6"
+                fillOpacity="0.7"
               />
             </svg>
           </div>
@@ -429,9 +437,13 @@ export function ServicesSection() {
       case '03':
         // Website Clone & Replication: Syncing Windows
         return (
-          <div className="w-full my-auto py-1 flex items-center justify-center pointer-events-none">
+          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5 sm:py-1'}`}>
             <svg
-              className="w-full max-w-[120px] sm:max-w-[140px] h-10 sm:h-12 lg:h-14 text-text-black/75 group-hover:text-text-black transition-colors"
+              className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
+                isOpen
+                  ? 'h-0 opacity-0 sm:h-5 sm:opacity-50 md:h-7 lg:h-8 max-w-[80px]'
+                  : 'h-8 sm:h-10 md:h-12 lg:h-14 max-w-[110px] sm:max-w-[130px]'
+              }`}
               viewBox="0 0 130 50"
               fill="none"
             >
@@ -442,10 +454,10 @@ export function ServicesSection() {
                 height="38"
                 rx="2"
                 stroke="currentColor"
-                strokeWidth="1.4"
-                strokeOpacity="0.65"
+                strokeWidth="1.6"
+                strokeOpacity="0.8"
                 fill="currentColor"
-                fillOpacity="0.06"
+                fillOpacity="0.09"
               />
               <line
                 x1="5"
@@ -453,8 +465,8 @@ export function ServicesSection() {
                 x2="47"
                 y2="14"
                 stroke="currentColor"
-                strokeWidth="1"
-                strokeOpacity="0.5"
+                strokeWidth="1.2"
+                strokeOpacity="0.65"
               />
               <rect
                 x="10"
@@ -463,7 +475,7 @@ export function ServicesSection() {
                 height="2.5"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.6"
+                fillOpacity="0.75"
               />
               <rect
                 x="10"
@@ -472,16 +484,16 @@ export function ServicesSection() {
                 height="12"
                 rx="1"
                 stroke="currentColor"
-                strokeWidth="0.8"
-                strokeOpacity="0.5"
+                strokeWidth="1"
+                strokeOpacity="0.65"
               />
 
               {/* Sync Arrow */}
               <path
                 d="M56,24 L72,24 M68,20 L72,24 L68,28"
                 stroke="currentColor"
-                strokeWidth="1.8"
-                strokeOpacity="0.95"
+                strokeWidth="2.2"
+                strokeOpacity="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -493,10 +505,10 @@ export function ServicesSection() {
                 height="38"
                 rx="2"
                 stroke="currentColor"
-                strokeWidth="1.5"
-                strokeOpacity="0.9"
+                strokeWidth="1.8"
+                strokeOpacity="0.95"
                 fill="currentColor"
-                fillOpacity="0.1"
+                fillOpacity="0.14"
               />
               <line
                 x1="82"
@@ -504,8 +516,8 @@ export function ServicesSection() {
                 x2="124"
                 y2="14"
                 stroke="currentColor"
-                strokeWidth="1"
-                strokeOpacity="0.75"
+                strokeWidth="1.2"
+                strokeOpacity="0.85"
               />
               <rect
                 x="87"
@@ -514,7 +526,7 @@ export function ServicesSection() {
                 height="2.5"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.9"
+                fillOpacity="0.95"
               />
               <rect
                 x="87"
@@ -523,10 +535,10 @@ export function ServicesSection() {
                 height="12"
                 rx="1"
                 stroke="currentColor"
-                strokeWidth="0.8"
-                strokeOpacity="0.8"
+                strokeWidth="1"
+                strokeOpacity="0.9"
                 fill="currentColor"
-                fillOpacity="0.15"
+                fillOpacity="0.2"
               />
             </svg>
           </div>
@@ -535,9 +547,13 @@ export function ServicesSection() {
       case '04':
         // Figma to Production Code
         return (
-          <div className="w-full my-auto py-1 flex items-center justify-center pointer-events-none">
+          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5 sm:py-1'}`}>
             <svg
-              className="w-full max-w-[120px] sm:max-w-[140px] h-10 sm:h-12 lg:h-14 text-text-black/75 group-hover:text-text-black transition-colors"
+              className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
+                isOpen
+                  ? 'h-0 opacity-0 sm:h-5 sm:opacity-50 md:h-7 lg:h-8 max-w-[80px]'
+                  : 'h-8 sm:h-10 md:h-12 lg:h-14 max-w-[110px] sm:max-w-[130px]'
+              }`}
               viewBox="0 0 130 50"
               fill="none"
             >
@@ -549,21 +565,21 @@ export function ServicesSection() {
                 height="34"
                 rx="2"
                 stroke="currentColor"
-                strokeWidth="1.4"
-                strokeOpacity="0.7"
-                strokeDasharray="2 2"
+                strokeWidth="1.6"
+                strokeOpacity="0.85"
+                strokeDasharray="2.5 2.5"
                 fill="currentColor"
-                fillOpacity="0.06"
+                fillOpacity="0.09"
               />
-              <circle cx="8" cy="8" r="2" fill="currentColor" />
-              <circle cx="42" cy="8" r="2" fill="currentColor" />
-              <circle cx="8" cy="42" r="2" fill="currentColor" />
-              <circle cx="42" cy="42" r="2" fill="currentColor" />
+              <circle cx="8" cy="8" r="2.2" fill="currentColor" />
+              <circle cx="42" cy="8" r="2.2" fill="currentColor" />
+              <circle cx="8" cy="42" r="2.2" fill="currentColor" />
+              <circle cx="42" cy="42" r="2.2" fill="currentColor" />
               <path
                 d="M16,32 Q25,14 34,28"
                 stroke="currentColor"
-                strokeWidth="1.6"
-                strokeOpacity="0.9"
+                strokeWidth="1.8"
+                strokeOpacity="0.95"
                 fill="none"
               />
 
@@ -571,8 +587,8 @@ export function ServicesSection() {
               <path
                 d="M52,25 L64,25 M60,21 L64,25 L60,29"
                 stroke="currentColor"
-                strokeWidth="1.8"
-                strokeOpacity="0.95"
+                strokeWidth="2.2"
+                strokeOpacity="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -585,16 +601,16 @@ export function ServicesSection() {
                 height="34"
                 rx="3"
                 stroke="currentColor"
-                strokeWidth="1.5"
-                strokeOpacity="0.9"
+                strokeWidth="1.8"
+                strokeOpacity="0.95"
                 fill="currentColor"
-                fillOpacity="0.1"
+                fillOpacity="0.14"
               />
               <path
                 d="M84,21 L80,25 L84,29 M94,21 L98,25 L94,29 M91,18 L87,32"
                 stroke="currentColor"
-                strokeWidth="1.6"
-                strokeOpacity="0.95"
+                strokeWidth="1.8"
+                strokeOpacity="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -605,9 +621,13 @@ export function ServicesSection() {
       case '05':
         // Maintenance & Optimization: Speedometer Dial & Sparkline
         return (
-          <div className="w-full my-auto py-1 flex items-center justify-center pointer-events-none">
+          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5 sm:py-1'}`}>
             <svg
-              className="w-full max-w-[120px] sm:max-w-[140px] h-10 sm:h-12 lg:h-14 text-text-black/75 group-hover:text-text-black transition-colors"
+              className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
+                isOpen
+                  ? 'h-0 opacity-0 sm:h-5 sm:opacity-50 md:h-7 lg:h-8 max-w-[80px]'
+                  : 'h-8 sm:h-10 md:h-12 lg:h-14 max-w-[110px] sm:max-w-[130px]'
+              }`}
               viewBox="0 0 130 50"
               fill="none"
             >
@@ -615,28 +635,28 @@ export function ServicesSection() {
               <path
                 d="M20,38 A 20 20 0 1 1 52,38"
                 stroke="currentColor"
-                strokeWidth="2.5"
-                strokeOpacity="0.3"
+                strokeWidth="2.8"
+                strokeOpacity="0.35"
                 strokeLinecap="round"
                 fill="none"
               />
               <path
                 d="M20,38 A 20 20 0 0 1 45,19"
                 stroke="currentColor"
-                strokeWidth="2.5"
-                strokeOpacity="0.95"
+                strokeWidth="2.8"
+                strokeOpacity="1"
                 strokeLinecap="round"
                 fill="none"
               />
-              <circle cx="36" cy="35" r="3" fill="currentColor" fillOpacity="0.95" />
+              <circle cx="36" cy="35" r="3.5" fill="currentColor" fillOpacity="1" />
               <line
                 x1="36"
                 y1="35"
                 x2="46"
                 y2="23"
                 stroke="currentColor"
-                strokeWidth="2"
-                strokeOpacity="0.95"
+                strokeWidth="2.2"
+                strokeOpacity="1"
                 strokeLinecap="round"
               />
 
@@ -644,16 +664,16 @@ export function ServicesSection() {
               <path
                 d="M68,36 L80,24 L90,30 L106,16"
                 stroke="currentColor"
-                strokeWidth="1.8"
-                strokeOpacity="0.95"
+                strokeWidth="2.2"
+                strokeOpacity="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <polyline
                 points="99,16 106,16 106,23"
                 stroke="currentColor"
-                strokeWidth="1.8"
-                strokeOpacity="0.95"
+                strokeWidth="2.2"
+                strokeOpacity="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -664,9 +684,13 @@ export function ServicesSection() {
       case '06':
         // Other / Custom Request: Dialogue Node with Consultation Arrow
         return (
-          <div className="w-full my-auto py-1 flex items-center justify-center pointer-events-none">
+          <div className={`w-full my-auto flex items-center justify-center pointer-events-none transition-all duration-300 ${isOpen ? 'py-0' : 'py-0.5 sm:py-1'}`}>
             <svg
-              className="w-full max-w-[120px] sm:max-w-[140px] h-10 sm:h-12 lg:h-14 text-text-black/75 group-hover:text-text-black transition-colors"
+              className={`w-full text-text-black/90 group-hover:text-text-black transition-all duration-300 ${
+                isOpen
+                  ? 'h-0 opacity-0 sm:h-5 sm:opacity-50 md:h-7 lg:h-8 max-w-[80px]'
+                  : 'h-8 sm:h-10 md:h-12 lg:h-14 max-w-[110px] sm:max-w-[130px]'
+              }`}
               viewBox="0 0 130 50"
               fill="none"
             >
@@ -677,10 +701,10 @@ export function ServicesSection() {
                 height="20"
                 rx="3"
                 stroke="currentColor"
-                strokeWidth="1.4"
-                strokeOpacity="0.65"
+                strokeWidth="1.6"
+                strokeOpacity="0.8"
                 fill="currentColor"
-                fillOpacity="0.06"
+                fillOpacity="0.09"
               />
               <rect
                 x="14"
@@ -689,7 +713,7 @@ export function ServicesSection() {
                 height="3"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.75"
+                fillOpacity="0.85"
               />
               <rect
                 x="14"
@@ -698,7 +722,7 @@ export function ServicesSection() {
                 height="2.5"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.5"
+                fillOpacity="0.6"
               />
 
               <rect
@@ -708,10 +732,10 @@ export function ServicesSection() {
                 height="22"
                 rx="3"
                 stroke="currentColor"
-                strokeWidth="1.5"
-                strokeOpacity="0.9"
+                strokeWidth="1.8"
+                strokeOpacity="0.95"
                 fill="currentColor"
-                fillOpacity="0.1"
+                fillOpacity="0.14"
               />
               <rect
                 x="58"
@@ -720,13 +744,13 @@ export function ServicesSection() {
                 height="3"
                 rx="1"
                 fill="currentColor"
-                fillOpacity="0.9"
+                fillOpacity="0.95"
               />
               <path
                 d="M100,30 L108,30 M105,27 L108,30 L105,33"
                 stroke="currentColor"
-                strokeWidth="1.6"
-                strokeOpacity="0.95"
+                strokeWidth="1.8"
+                strokeOpacity="1"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -740,16 +764,16 @@ export function ServicesSection() {
   };
 
   return (
-    <section className="px-6 pb-6 pt-20 md:pt-22 relative flex flex-col h-screen w-full bg-transparent overflow-hidden justify-between">
-      <div className="w-full h-full flex flex-col relative justify-between gap-2 sm:gap-3 lg:gap-0">
-        {/* Header My services căn phải đồng bộ với Skills */}
-        <div className="flex justify-end w-full mb-2 sm:mb-3 lg:mb-4 shrink-0">
-          <h1 className="text-4xl font-bold text-text-black/50 italic text-right">
+    <section className="px-3 sm:px-6 pb-3 sm:pb-6 pt-14 sm:pt-18 lg:pt-20 relative flex flex-col h-screen w-full bg-transparent overflow-hidden justify-between select-none">
+      <div className="w-full h-full flex flex-col relative justify-between gap-1 sm:gap-2">
+        {/* Header My services căn phải */}
+        <div className="flex justify-end w-full mb-1 sm:mb-2 shrink-0">
+          <h1 className="text-3xl sm:text-4xl font-bold text-text-black/50 italic text-right">
             My services
           </h1>
         </div>
 
-        {/* Seamless Monolithic Bento Matrix: Tối ưu 2x3 trên Mobile và Asymmetric trên Desktop */}
+        {/* Seamless Monolithic Bento Matrix */}
         <div className="grid grid-cols-2 grid-rows-3 lg:grid-cols-12 lg:grid-rows-2 gap-0 w-full flex-1 min-h-0 rounded overflow-hidden border border-text-black/20">
           {BENTO_SERVICES.map((service) => {
             const isOpen = hoveredId === service.id || activeId === service.id;
@@ -760,12 +784,12 @@ export function ServicesSection() {
                 onMouseEnter={() => setHoveredId(service.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 onClick={() => toggleActive(service.id)}
-                className={`${service.span} ${service.borderClass} h-full p-2.5 sm:p-4 lg:p-6 rounded-none bg-transparent hover:bg-text-black/[0.05] transition-colors duration-200 flex flex-col justify-between cursor-pointer select-none overflow-hidden relative group`}
+                className={`${service.span} ${service.borderClass} h-full p-2 sm:p-3.5 lg:p-5 rounded-none bg-transparent hover:bg-text-black/[0.04] transition-colors duration-200 flex flex-col justify-between cursor-pointer select-none overflow-hidden relative group`}
               >
                 {/* Top Row: Expand Icon */}
                 <div className="flex items-center justify-end w-full shrink-0 select-none">
                   <span
-                    className={`text-xs sm:text-sm font-bold text-text-black/40 group-hover:text-text-black transition-all duration-300 ${
+                    className={`text-[10px] sm:text-xs lg:text-sm font-bold text-text-black/40 group-hover:text-text-black transition-all duration-300 ${
                       isOpen ? 'rotate-45 text-text-black' : ''
                     }`}
                   >
@@ -773,12 +797,12 @@ export function ServicesSection() {
                   </span>
                 </div>
 
-                {/* Pictographic Visual Shape Zone (Đậm nét, tương phản rõ) */}
-                {renderPictographicShape(service.id)}
+                {/* Pictographic Visual Shape Zone */}
+                {renderPictographicShape(service.id, isOpen)}
 
                 {/* Bottom Title & Expandable Description */}
-                <div className="flex flex-col justify-end w-full pt-1">
-                  <h2 className="text-xs sm:text-sm lg:text-lg font-bold text-text-black leading-snug">
+                <div className="flex flex-col justify-end w-full pt-1 shrink-0">
+                  <h2 className="text-[11px] sm:text-xs md:text-sm lg:text-base font-bold text-text-black leading-tight sm:leading-snug">
                     {service.title}
                   </h2>
 
@@ -795,20 +819,20 @@ export function ServicesSection() {
                         }}
                         className="overflow-hidden w-full"
                       >
-                        <div className="pt-1 sm:pt-2 flex flex-col gap-1.5 sm:gap-2">
-                          <p className="text-[11px] sm:text-xs lg:text-sm text-text-black/75 font-normal leading-relaxed">
+                        <div className="pt-1 sm:pt-1.5 flex flex-col gap-1 sm:gap-1.5">
+                          <p className="text-[9.5px] sm:text-[11px] md:text-xs lg:text-[13px] text-text-black/75 font-normal leading-tight sm:leading-relaxed line-clamp-3 sm:line-clamp-4 lg:line-clamp-none">
                             {service.description}
                           </p>
 
                           {service.isCustom && (
-                            <div className="pt-0.5 sm:pt-1">
+                            <div className="pt-0.5">
                               <a
                                 href={service.actionHref}
                                 onClick={(e) => e.stopPropagation()}
-                                className="inline-flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3.5 py-1 sm:py-1.5 bg-text-black text-white hover:bg-neutral-800 text-[10px] sm:text-xs font-bold transition-all w-fit"
+                                className="inline-flex items-center gap-1 px-2 sm:px-3 py-0.5 sm:py-1 bg-text-black text-white hover:bg-neutral-800 text-[9.5px] sm:text-xs font-bold transition-all w-fit"
                               >
                                 <span>{service.actionText}</span>
-                                <ArrowUpRight className="w-3 h-3" />
+                                <ArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                               </a>
                             </div>
                           )}

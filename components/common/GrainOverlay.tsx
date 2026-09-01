@@ -143,14 +143,14 @@ export function GrainOverlay() {
 
   return (
     <>
-      {/* Vầng sáng nền trắng (#FFFFFF) nằm phía sau các phần tử (Behind Content) */}
+      {/* Vầng sáng nền trắng (#FFFFFF) nằm phía sau các phần tử (Behind Content) - Độ sáng dịu nhẹ */}
       <div
         ref={spotlightRef}
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-0 rounded-full opacity-0 transition-opacity duration-200 select-none will-change-transform bg-white shadow-[0_0_60px_30px_#FFFFFF]"
+        className="pointer-events-none fixed top-0 left-0 z-0 rounded-full opacity-0 transition-opacity duration-200 select-none will-change-transform bg-white/75 shadow-[0_0_45px_20px_rgba(255,255,255,0.75)]"
         style={{
-          width: '160px',
-          height: '160px',
+          width: '150px',
+          height: '150px',
         }}
       />
 
