@@ -144,12 +144,18 @@ nextjs-portal {
   }
 }
 
-/* fullPage.js watermark - hide when license invalid (credits.enabled:false alone still shows if licenseKey invalid) */
+/* fullPage.js watermark - hide when license invalid */
 .fp-watermark {
   display: none !important;
 }
 
-/* hide fullPage dots - tắt hẳn theo yêu cầu */
+/* hide fullPage dots */
 #fp-nav {
   display: none !important;
+}
+
+/* Section isolation without breaking fullpage height calculation */
+.section,
+.fp-section {
+  overflow: hidden;
 }

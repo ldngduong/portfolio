@@ -6,25 +6,25 @@ import { TbMailOpenedFilled } from 'react-icons/tb';
 
 export function CtaSection() {
   return (
-    <section className="px-6 pb-6 pt-20 md:pt-22 relative flex flex-col h-screen w-full bg-transparent overflow-hidden justify-between select-none">
+    <section className="px-4 sm:px-6 pb-4 sm:pb-6 pt-16 sm:pt-20 md:pt-22 relative flex flex-col h-full min-h-0 w-full bg-transparent overflow-hidden justify-between select-none">
       <div className="shrink-0" />
 
       {/* Main Impact Body (Căn trái, kích thước lớn) */}
-      <div className="max-w-4xl space-y-6 my-auto">
-        <div className="space-y-3">
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-text-black leading-[1.05]">
+      <div className="max-w-4xl space-y-4 sm:space-y-6 my-auto">
+        <div className="space-y-2 sm:space-y-3">
+          <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-text-black leading-[1.08] sm:leading-[1.05]">
             Let&apos;s build something extraordinary together.
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-text-black/70 max-w-2xl font-normal leading-relaxed pt-2">
+          <p className="text-xs sm:text-base md:text-lg lg:text-xl text-text-black/70 max-w-2xl font-normal leading-relaxed pt-1 sm:pt-2">
             Have a project in mind, looking for a software engineer, or just want to say hi? My inbox is always open.
           </p>
         </div>
 
         {/* Action Button: Direct mailto link */}
-        <div className="pt-4">
+        <div className="pt-2 sm:pt-4">
           <a
             href="mailto:letungduong1624@gmail.com"
-            className="inline-flex items-center justify-center px-8 py-3.5 text-sm sm:text-base font-bold text-white bg-text-black hover:bg-neutral-800 rounded-sm transition-all shadow-sm hover:shadow cursor-pointer"
+            className="inline-flex items-center justify-center px-6 sm:px-8 py-2.5 sm:py-3.5 text-xs sm:text-base font-bold text-white bg-text-black hover:bg-neutral-800 rounded-sm transition-all shadow-sm hover:shadow cursor-pointer"
           >
             Contact Now
           </a>

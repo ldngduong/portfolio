@@ -97,15 +97,15 @@ export function ProjectsSection() {
   }, [api]);
 
   return (
-    <section className="p-6 relative flex h-screen w-full items-center justify-center overflow-hidden bg-transparent">
+    <section className="p-4 sm:p-6 pt-16 sm:pt-20 md:pt-6 relative flex h-full min-h-0 w-full items-center justify-center overflow-hidden bg-transparent select-none">
       <div className="w-full flex flex-col justify-center items-center relative">
         {/* Title My projects ngay phía trên các items */}
-        <h1 className="text-4xl font-bold text-text-black/50 italic text-center mb-8 lg:mb-10">
+        <h1 className="text-3xl sm:text-4xl font-bold text-text-black/50 italic text-center mb-3 sm:mb-6 lg:mb-10">
           My projects
         </h1>
 
         {/* Khối Text & Monitor trung tâm */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center justify-center w-full max-w-[1280px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-14 items-center justify-center w-full max-w-[1280px]">
           {/* BÊN TRÁI: SHADCN CAROUSEL */}
           <ProjectCarousel
             ref={carouselContainerRef}

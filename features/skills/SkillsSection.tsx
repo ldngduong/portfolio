@@ -64,10 +64,10 @@ export function SkillsSection() {
   return (
     <section 
       onMouseMove={handleMouseMove}
-      className="p-6 relative flex h-screen w-full items-center justify-center overflow-hidden bg-transparent"
+      className="p-4 sm:p-6 pt-16 sm:pt-20 md:pt-6 relative flex h-full min-h-0 w-full items-center justify-center overflow-hidden bg-transparent select-none"
     >
-      <div className="w-full flex flex-col justify-center items-end relative min-h-[320px]">
-        <h1 className='text-4xl font-bold text-text-black/50 italic'>My skills</h1>
+      <div className="w-full flex flex-col justify-center items-end relative min-h-0">
+        <h1 className='text-3xl sm:text-4xl font-bold text-text-black/50 italic mb-2 sm:mb-4'>My skills</h1>
         {SKILLS_DATA.map((item) => {
           const isActive = activeId === item.id;
 
@@ -77,7 +77,7 @@ export function SkillsSection() {
               onClick={() => handleClick(item.id)}
               onMouseEnter={() => handleMouseEnter(item.id)}
               onMouseLeave={handleMouseLeave}
-              className="group py-10 flex flex-col items-end cursor-pointer select-none"
+              className="group py-3 sm:py-5 md:py-7 flex flex-col items-end cursor-pointer select-none"
             >
               {/* Skill Cha Header */}
               <div className="flex justify-end items-center">

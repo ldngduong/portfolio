@@ -23,7 +23,7 @@ export const ProjectCarousel = forwardRef<HTMLDivElement, ProjectCarouselProps>(
     return (
       <div
         ref={ref}
-        className="lg:col-span-6 flex flex-col justify-center min-h-[360px] w-full touch-pan-y order-2 lg:order-1"
+        className="lg:col-span-6 flex flex-col justify-center min-h-0 w-full touch-pan-y order-2 lg:order-1"
       >
         <Carousel
           setApi={setApi}
@@ -37,23 +37,23 @@ export const ProjectCarousel = forwardRef<HTMLDivElement, ProjectCarouselProps>(
           <CarouselContent>
             {projects.map((project) => (
               <CarouselItem key={project.id} className="w-full">
-                <div className="flex flex-col justify-center items-end min-h-[240px] py-2">
+                <div className="flex flex-col justify-center items-center lg:items-end min-h-0 py-1 sm:py-2">
                   <div className="flex flex-col items-start text-left max-w-lg w-full">
                     {/* Title (Căn trái) */}
                     <h2
                       onClick={() => onProjectClick(project)}
-                      className="text-4xl sm:text-5xl md:text-6xl font-bold text-text-black hover:opacity-75 transition-opacity duration-200 cursor-pointer text-left leading-tight"
+                      className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-text-black hover:opacity-75 transition-opacity duration-200 cursor-pointer text-left leading-tight"
                     >
                       {project.title}
                     </h2>
 
                     {/* Description (Căn trái) */}
-                    <p className="text-sm sm:text-base text-text-black/85 mt-3 text-left leading-relaxed font-normal">
+                    <p className="text-xs sm:text-sm md:text-base text-text-black/85 mt-1.5 sm:mt-3 text-left leading-relaxed font-normal line-clamp-3 sm:line-clamp-none">
                       {project.description}
                     </p>
 
                     {/* Action Links (Căn trái) */}
-                    <div className="mt-5 flex items-center justify-start gap-4 text-xs font-bold">
+                    <div className="mt-3 sm:mt-5 flex items-center justify-start gap-4 text-xs font-bold">
                       {project.demoUrl && (
                         <a
                           href={project.demoUrl}
@@ -82,7 +82,7 @@ export const ProjectCarousel = forwardRef<HTMLDivElement, ProjectCarouselProps>(
         </Carousel>
 
         {/* MINIMALIST DOT INDICATORS (CĂN TRÁI CÙNG KHỐI TEXT) */}
-        <div className="mt-6 flex items-center justify-end w-full">
+        <div className="mt-3 sm:mt-6 flex items-center justify-end w-full">
           <div className="flex items-center justify-start gap-2 max-w-lg w-full">
             {projects.map((project, index) => (
               <button
