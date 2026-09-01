@@ -34,11 +34,21 @@ export function GrainOverlay() {
     let currentX = -1000;
     let currentY = -1000;
     let isInside = false;
-    const CLEAR_RADIUS = 100; // Bán kính vùng làm sạch nhiễu nhẹ nhàng quanh chuột
+
+    // Dynamic clear radius according to screen size
+    const getClearRadius = () => {
+      if (typeof window === 'undefined') return 100;
+      if (window.innerWidth < 640) return 50;
+      if (window.innerWidth < 1024) return 80;
+      return 120;
+    };
+
+    let clearRadius = getClearRadius();
 
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      clearRadius = getClearRadius();
     };
 
     resize();
@@ -54,6 +64,18 @@ export function GrainOverlay() {
       }
     };
 
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        mouseX = e.touches[0].clientX;
+        mouseY = e.touches[0].clientY;
+        if (!isInside) {
+          currentX = mouseX;
+          currentY = mouseY;
+          isInside = true;
+        }
+      }
+    };
+
     const onMouseLeave = () => {
       isInside = false;
       if (spotlight) {
@@ -62,7 +84,9 @@ export function GrainOverlay() {
     };
 
     window.addEventListener('mousemove', onMouseMove, { passive: true });
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
     document.addEventListener('mouseleave', onMouseLeave);
+    document.addEventListener('touchend', onMouseLeave);
 
     const loop = () => {
       frameCount++;
@@ -105,7 +129,7 @@ export function GrainOverlay() {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
       }
 
-      // Xóa hạt nhiễu nhẹ nhàng quanh chuột trên desktop
+      // Xóa hạt nhiễu chuẩn tỉ lệ quanh chuột
       if (isInside && currentX > -300 && currentY > -300) {
         ctx.save();
         ctx.globalCompositeOperation = 'destination-out';
@@ -115,14 +139,15 @@ export function GrainOverlay() {
           0,
           currentX,
           currentY,
-          CLEAR_RADIUS
+          clearRadius
         );
-        grad.addColorStop(0, 'rgba(0, 0, 0, 0.8)');
-        grad.addColorStop(0.6, 'rgba(0, 0, 0, 0.5)');
+        grad.addColorStop(0, 'rgba(0, 0, 0, 1)');
+        grad.addColorStop(0.65, 'rgba(0, 0, 0, 1)');
+        grad.addColorStop(0.9, 'rgba(0, 0, 0, 0.4)');
         grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(currentX, currentY, CLEAR_RADIUS, 0, Math.PI * 2);
+        ctx.arc(currentX, currentY, clearRadius, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       }
@@ -136,24 +161,22 @@ export function GrainOverlay() {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('touchmove', onTouchMove);
       document.removeEventListener('mouseleave', onMouseLeave);
+      document.removeEventListener('touchend', onMouseLeave);
     };
   }, []);
 
   return (
     <>
-      {/* Vầng sáng dịu nhẹ chỉ hiển thị trên Desktop (Ẩn hoàn toàn trên Touch/Mobile để không che shape) */}
+      {/* Vầng sáng nền trắng (#FFFFFF) tỉ lệ chuẩn theo kích thước màn hình (không che khuất card trên mobile) */}
       <div
         ref={spotlightRef}
         aria-hidden="true"
-        className="pointer-events-none fixed top-0 left-0 z-0 rounded-full opacity-0 transition-opacity duration-200 select-none will-change-transform bg-white/25 shadow-[0_0_30px_10px_rgba(255,255,255,0.3)] hidden lg:block"
-        style={{
-          width: '120px',
-          height: '120px',
-        }}
+        className="pointer-events-none fixed top-0 left-0 z-0 rounded-full opacity-0 transition-opacity duration-200 select-none will-change-transform bg-white shadow-[0_0_24px_10px_#FFFFFF] sm:shadow-[0_0_40px_18px_#FFFFFF] lg:shadow-[0_0_60px_25px_#FFFFFF] w-14 h-14 sm:w-24 sm:h-24 lg:w-36 lg:h-36"
       />
 
-      {/* Lớp hạt nhiễu toàn màn hình */}
+      {/* Lớp hạt nhiễu toàn màn hình với lỗ tròn trong suốt theo chuột */}
       <canvas
         ref={canvasRef}
         aria-hidden="true"

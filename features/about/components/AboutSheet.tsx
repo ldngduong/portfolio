@@ -146,37 +146,37 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
         side="full"
-        className="!fixed !inset-0 !w-screen !max-w-none !h-screen !max-h-screen flex flex-col p-0 bg-background border-none overflow-hidden z-50
-        [&>button]:bg-text-black/10 [&>button]:hover:bg-text-black/20 [&>button]:border-none [&>button]:rounded-full [&>button]:z-50 [&>button]:top-5 [&>button]:right-6 transition-all"
+        className="!fixed !inset-0 !w-screen !max-w-none !h-[100dvh] !max-h-[100dvh] flex flex-col p-0 bg-background border-none overflow-hidden z-50
+        [&>button]:bg-text-black/10 [&>button]:hover:bg-text-black/20 [&>button]:border-none [&>button]:rounded-full [&>button]:z-50 [&>button]:top-4 [&>button]:right-4 sm:[&>button]:top-5 sm:[&>button]:right-6 transition-all"
         onWheel={(e) => e.stopPropagation()}
         onTouchMove={(e) => e.stopPropagation()}
       >
         <SheetTitle className="sr-only">About Duong Le - Profile & Experience</SheetTitle>
 
         <div className="flex-1 min-h-0 w-full h-full overflow-hidden">
-          <div className="h-full w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
+          <div className="h-full w-full max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-12 overflow-hidden">
             
             {/* LEFT COLUMN: Profile Info & Contact CTA */}
-            <aside className="lg:col-span-5 h-full flex flex-col justify-between p-6 sm:p-8 lg:p-10 overflow-y-auto lg:overflow-y-hidden border-b lg:border-b-0 lg:border-r border-text-black/10">
-              <div className="space-y-5">
+            <aside className="lg:col-span-5 w-full flex flex-col justify-between p-5 sm:p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-text-black/10 shrink-0">
+              <div className="space-y-3 sm:space-y-5">
                 {/* Identity */}
                 <div className="space-y-1">
-                  <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-text-black">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-text-black">
                     Duong Le
                   </h1>
-                  <h2 className="text-base sm:text-lg font-medium text-text-black/80">
+                  <h2 className="text-sm sm:text-base lg:text-lg font-medium text-text-black/80">
                     Software Engineer
                   </h2>
-                  <p className="text-sm text-text-black/65 pt-1 leading-relaxed max-w-xs">
+                  <p className="text-xs sm:text-sm text-text-black/65 pt-0.5 sm:pt-1 leading-relaxed max-w-xs sm:max-w-sm">
                     Building scalable web applications with clean architecture — bridging smooth frontend with high-performance backends.
                   </p>
                 </div>
 
                 {/* Contact Now CTA Button */}
-                <div className="pt-2">
+                <div className="pt-1 sm:pt-2">
                   <a
                     href="mailto:letungduong1624@gmail.com"
-                    className="inline-flex items-center justify-center px-6 py-2.5 text-xs font-semibold text-white bg-text-black hover:bg-neutral-800 rounded-sm transition-colors cursor-pointer"
+                    className="inline-flex items-center justify-center px-5 sm:px-6 py-2 sm:py-2.5 text-xs font-semibold text-white bg-text-black hover:bg-neutral-800 rounded-sm transition-colors cursor-pointer"
                   >
                     Contact Now
                   </a>
@@ -184,7 +184,7 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
               </div>
 
               {/* Bottom: Social Links */}
-              <div className="pt-6">
+              <div className="pt-3 sm:pt-6">
                 <div className="flex items-center gap-4 text-text-black/75">
                   <Link
                     href="mailto:letungduong1624@gmail.com"
@@ -193,7 +193,7 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                     aria-label="Email Duong Le"
                     className="hover:opacity-60 transition-opacity"
                   >
-                    <TbMailOpenedFilled className="text-2xl" />
+                    <TbMailOpenedFilled className="text-xl sm:text-2xl" />
                   </Link>
                   <Link
                     href="https://www.linkedin.com/in/toiladuong/"
@@ -202,7 +202,7 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                     aria-label="LinkedIn Profile"
                     className="hover:opacity-60 transition-opacity"
                   >
-                    <FaLinkedin className="text-2xl" />
+                    <FaLinkedin className="text-xl sm:text-2xl" />
                   </Link>
                   <Link
                     href="https://github.com/letungduong24"
@@ -211,14 +211,14 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                     aria-label="GitHub Profile"
                     className="hover:opacity-60 transition-opacity"
                   >
-                    <FaGithubSquare className="text-2xl" />
+                    <FaGithubSquare className="text-xl sm:text-2xl" />
                   </Link>
                 </div>
               </div>
             </aside>
 
             {/* RIGHT COLUMN: Scrollable Content */}
-            <main className="lg:col-span-7 h-full min-h-0 overflow-hidden flex flex-col bg-background">
+            <main className="lg:col-span-7 flex-1 min-h-0 overflow-hidden flex flex-col bg-background">
               <ScrollArea
                 className="flex-1 h-full w-full"
                 onWheel={(e) => e.stopPropagation()}
@@ -231,7 +231,7 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                     <h2 className="lg:hidden text-xs font-semibold text-text-black/50">
                       About
                     </h2>
-                    <div className="space-y-3 text-sm text-text-black/75 leading-relaxed font-normal">
+                    <div className="space-y-3 text-xs sm:text-sm text-text-black/75 leading-relaxed font-normal">
                       <p>
                         I am a Software Engineer focused on building fast, accessible, and maintainable digital products. I combine responsive frontend engineering in <strong>Next.js</strong>, <strong>React</strong>, and <strong>TypeScript</strong> with solid backend foundations in <strong>Node.js</strong> and <strong>PostgreSQL</strong>.
                       </p>
@@ -267,7 +267,7 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                             </div>
 
                             {/* Role & Company */}
-                            <h3 className="text-base font-bold text-text-black flex items-center gap-1.5">
+                            <h3 className="text-sm sm:text-base font-bold text-text-black flex items-center gap-1.5">
                               <span>{exp.role}</span>
                               <span className="text-text-black/40">·</span>
                               <span className="text-text-black/85">{exp.company}</span>
@@ -325,7 +325,7 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                             </div>
 
                             <div>
-                              <h3 className="text-base font-bold text-text-black flex items-center gap-1.5">
+                              <h3 className="text-sm sm:text-base font-bold text-text-black flex items-center gap-1.5">
                                 <span>{item.title}</span>
                                 <span className="text-text-black/40">·</span>
                                 <span className="text-text-black/85">{item.institution}</span>
