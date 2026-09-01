@@ -34,7 +34,7 @@ export function ProjectSheet({ project, onOpenChange }: ProjectSheetProps) {
                 src={project.image}
                 alt={project.title}
                 fill
-                className="object-cover"
+                className="object-cover grayscale"
                 priority
               />
 
@@ -107,8 +107,8 @@ export function ProjectSheet({ project, onOpenChange }: ProjectSheetProps) {
             </ScrollArea>
 
             {/* Sticky Bottom: Action Buttons */}
-            <div className="p-4 sm:p-5 border-t border-text-black/10 bg-background shrink-0 flex flex-col gap-2.5">
-              {project.demoUrl && (
+            {project.demoUrl && (
+              <div className="p-4 sm:p-5 border-t border-text-black/10 bg-background shrink-0 flex flex-col gap-2.5">
                 <Link
                   href={project.demoUrl}
                   target="_blank"
@@ -118,20 +118,8 @@ export function ProjectSheet({ project, onOpenChange }: ProjectSheetProps) {
                   <span>Live Demo</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </Link>
-              )}
-
-              {project.githubUrl && (
-                <Link
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full text-center px-5 py-2.5 text-xs font-bold text-text-black bg-transparent hover:bg-text-black/[0.05] rounded-sm border border-text-black/20 transition-colors"
-                >
-                  <span>Source Code</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </Link>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         )}
       </SheetContent>

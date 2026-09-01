@@ -1,8 +1,8 @@
 import type { StaticImageData } from 'next/image';
 
-import seev from '../../public/project/seev.png';
-import railflow from '../../public/project/railflow.png';
-import clipy from '../../public/project/clipy.png';
+import seev from '../../public/project/seev.webp';
+import railflow from '../../public/project/railflow.webp';
+import clipy from '../../public/project/clipy.webp';
 
 export interface ProjectFeature {
   title: string;
@@ -89,7 +89,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
       },
     ],
     techStack: ['React', 'NestJS', 'FastAPI', 'Python', 'PostgreSQL', 'Redis', 'OpenAI', 'Docker'],
-    githubUrl: 'https://github.com/ldngduong/seev',
+    githubUrl: 'https://github.com/letungduong24/seev',
     demoUrl: 'https://seev.duongle.dev',
     image: seev,
   },
@@ -122,8 +122,8 @@ export const PROJECTS_DATA: ProjectItem[] = [
       },
     ],
     techStack: ['Tauri v2', 'Rust', 'React', 'TypeScript', 'Zustand', 'SQLite', 'Tailwind CSS'],
-    githubUrl: 'https://github.com/ldngduong/clipy',
-    demoUrl: 'https://github.com/ldngduong/clipy/releases',
+    githubUrl: 'https://github.com/letungduong24/clipy',
+    demoUrl: 'https://github.com/letungduong24/clipy/releases',
     image: clipy,
   },
 ];

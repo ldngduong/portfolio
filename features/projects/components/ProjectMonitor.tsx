@@ -83,7 +83,7 @@ export const ProjectMonitor = forwardRef<HTMLDivElement, ProjectMonitorProps>(
                       alt={selectedProject.title}
                       fill
                       priority
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-102"
+                      className="object-cover object-top grayscale transition-transform duration-500 group-hover:scale-102"
                     />
                   </motion.div>
                 </AnimatePresence>

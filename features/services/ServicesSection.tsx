@@ -740,7 +740,7 @@ export function ServicesSection() {
   };
 
   return (
-    <section className="px-6 pb-6 pt-20 md:pt-22 relative flex flex-col h-screen w-full bg-background overflow-hidden justify-between">
+    <section className="px-6 pb-6 pt-20 md:pt-22 relative flex flex-col h-screen w-full bg-transparent overflow-hidden justify-between">
       <div className="w-full h-full flex flex-col relative justify-between gap-2 sm:gap-3 lg:gap-0">
         {/* Header My services căn phải đồng bộ với Skills */}
         <div className="flex justify-end w-full mb-2 sm:mb-3 lg:mb-4 shrink-0">

@@ -52,18 +52,6 @@ export const ProjectCarousel = forwardRef<HTMLDivElement, ProjectCarouselProps>(
                       {project.description}
                     </p>
 
-                    {/* Tech Stack Pills (Căn trái) */}
-                    <div className="mt-4 flex flex-wrap justify-start gap-1.5">
-                      {project.techStack.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-2.5 py-0.5 text-xs font-medium rounded-sm border border-text-black/20 text-text-black/85 bg-text-black/[0.03] hover:border-text-black/50 transition-colors select-none"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
                     {/* Action Links (Căn trái) */}
                     <div className="mt-5 flex items-center justify-start gap-4 text-xs font-bold">
                       {project.demoUrl && (
@@ -74,18 +62,6 @@ export const ProjectCarousel = forwardRef<HTMLDivElement, ProjectCarouselProps>(
                           className="inline-flex items-center gap-1 text-text-black hover:opacity-60 transition-opacity duration-200"
                         >
                           <span>Live Demo</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </a>
-                      )}
-
-                      {project.githubUrl && (
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-text-black/80 hover:text-text-black transition-colors duration-200"
-                        >
-                          <span>Source</span>
                           <ArrowUpRight className="w-3.5 h-3.5" />
                         </a>
                       )}

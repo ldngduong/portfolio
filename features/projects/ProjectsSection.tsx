@@ -97,7 +97,7 @@ export function ProjectsSection() {
   }, [api]);
 
   return (
-    <section className="p-6 relative flex h-screen w-full items-center justify-center overflow-hidden bg-background">
+    <section className="p-6 relative flex h-screen w-full items-center justify-center overflow-hidden bg-transparent">
       <div className="w-full flex flex-col justify-center items-center relative">
         {/* Title My projects ngay phía trên các items */}
         <h1 className="text-4xl font-bold text-text-black/50 italic text-center mb-8 lg:mb-10">

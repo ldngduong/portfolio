@@ -1,14 +1,13 @@
 import Image from "next/image";
-import HeroImage from "../../public/hero1hero.png";
+import HeroImage from "../../public/hero1hero.webp";
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 import { TbMailOpenedFilled } from "react-icons/tb";
-import { IoIosArrowDropdown } from "react-icons/io";
 
 import Link from "next/link";
 
 export function HeroSection() {
   return (
-    <section className="p-4 relative flex h-screen w-full items-center justify-center overflow-hidden bg-background">
+    <section className="p-4 relative flex h-screen w-full items-center justify-center overflow-hidden bg-transparent">
       
       {/* Container chứa ảnh Hero */}
       <div className="absolute bottom-0 flex items-end justify-center h-[90%] pointer-events-none">
@@ -23,7 +22,7 @@ export function HeroSection() {
       {/* Tiêu đề & Nội dung trung tâm */}
       <div className="z-10 text-center">
         <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-text-black leading-none">
-          Hi, I'm Duong Le
+          Hi, I&apos;m Duong Le
         </h1>
         <h2 className="text-2xl md:text-3xl font-medium text-text-black mt-2">
           Software Engineer
@@ -51,7 +50,7 @@ export function HeroSection() {
         </Link>
 
         <Link 
-          href="https://github.com/toiladuong" 
+          href="https://github.com/letungduong24" 
           target="_blank" 
           rel="noopener noreferrer"
           aria-label="GitHub profile"
@@ -60,20 +59,14 @@ export function HeroSection() {
         </Link>
       </div>
 
-      <div className="absolute bottom-8 right-8 text-right z-20 w-[60%]">
-        <p className="text-xl md:text-2xl lg:text-4xl font-bold leading-snug text-text-black">
+      <div className="absolute bottom-8 right-8 text-right z-20 w-[60%] md:w-[80%]">
+        <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-snug text-text-black">
           Building scalable web apps with clean architecture —
         </p>
-        <p className="text-xl md:text-2xl lg:text-4xl font-bold leading-snug text-text-black/75">
+        <p className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-snug text-text-black/75">
           bridging smooth frontend with high-performance backends.
         </p>
       </div>
-
-      {/* Gradient Overlay dưới đáy */}
-      <div 
-        aria-hidden="true"
-        className="absolute bottom-0 left-0 right-0 h-20 md:h-30 bg-gradient-to-t from-background via-background/70 to-transparent pointer-events-none z-[5]" 
-      />
     </section>
   );
 }

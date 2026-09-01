@@ -64,7 +64,7 @@ export function SkillsSection() {
   return (
     <section 
       onMouseMove={handleMouseMove}
-      className="p-6 relative flex h-screen w-full items-center justify-center overflow-hidden bg-background"
+      className="p-6 relative flex h-screen w-full items-center justify-center overflow-hidden bg-transparent"
     >
       <div className="w-full flex flex-col justify-center items-end relative min-h-[320px]">
         <h1 className='text-4xl font-bold text-text-black/50 italic'>My skills</h1>

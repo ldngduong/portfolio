@@ -36,8 +36,8 @@ export function FullPageWrapper({ children }: FullPageWrapperProps) {
         // For portfolio open-source: request free key at https://alvarotrigo.com/fullPage/extensions/requestKey.html
         // Dev placeholder: "YOUR_KEY_HERE" is invalid -> watermark forced even if credits.enabled:false, so we hide it via CSS .fp-watermark
         licenseKey: "YOUR_KEY_HERE",
-        // Anchors for URL (#hero/#projects...) and menu sync - thứ tự: Projects -> Services -> Skills -> About
-        anchors: ["hero", "projects", "services", "skills", "about"],
+        // Anchors for URL (#hero/#projects...) and menu sync
+        anchors: ["hero", "projects", "services", "skills", "contact"],
         menu: "#fp-menu",
         // Navigation dots - tắt hẳn theo yêu cầu
         navigation: false,
