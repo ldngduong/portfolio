@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto, Geist_Mono } from "next/font/google";
-import { GrainOverlay } from "@/components/common/GrainOverlay";
+import { PixelCursor } from "@/components/common/PixelCursor";
 import { LoadingScreen } from "@/components/common/LoadingScreen";
 import "./globals.css";
 
@@ -29,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="font-sans bg-background text-foreground relative">
         <LoadingScreen />
-        <GrainOverlay />
+        <PixelCursor />
         {children}
       </body>
     </html>

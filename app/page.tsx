@@ -1,32 +1,51 @@
 import { Navbar } from "@/components/common/Navbar";
-import { FullPageWrapper } from "@/components/common/FullPageWrapper";
-import { HeroSection } from "@/features/hero/HeroSection";
-import { ServicesSection } from "@/features/services/ServicesSection";
-import { SkillsSection } from "@/features/skills/SkillsSection";
-import { ProjectsSection } from "@/features/projects/ProjectsSection";
-import { CtaSection } from "@/features/cta/CtaSection";
+import {
+  HeroSection,
+  ExperienceSection,
+  ProjectsSection,
+  SkillsSection,
+  EducationSection,
+  CtaSection,
+} from "@/features/home";
 
 export default function Home() {
   return (
-    <div className="relative">
+    <div className="min-h-screen bg-background text-text-black selection:bg-text-black selection:text-white">
+      {/* Sticky Header */}
       <Navbar />
-      <FullPageWrapper>
-        <div className="section h-full" data-anchor="hero">
+
+      {/* Centered Max-Width Main Content Flow */}
+      <main className="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-6 sm:pt-8 sm:pb-8 space-y-8 sm:space-y-10 md:space-y-12">
+        {/* 1. Hero */}
+        <div id="hero" className="scroll-mt-24">
           <HeroSection />
         </div>
-        <div className="section" data-anchor="projects">
+
+        {/* 2. Experience (lên trên Project) */}
+        <div id="experience" className="scroll-mt-24">
+          <ExperienceSection />
+        </div>
+
+        {/* 3. Projects */}
+        <div id="projects" className="scroll-mt-24">
           <ProjectsSection />
         </div>
-        <div className="section" data-anchor="services">
-          <ServicesSection />
-        </div>
-        <div className="section" data-anchor="skills">
+
+        {/* 4. Skills */}
+        <div id="skills" className="scroll-mt-24">
           <SkillsSection />
         </div>
-        <div className="section" data-anchor="contact">
+
+        {/* 5. Education (dưới Skills) */}
+        <div id="education" className="scroll-mt-24">
+          <EducationSection />
+        </div>
+
+        {/* 6. CTA / Contact */}
+        <div>
           <CtaSection />
         </div>
-      </FullPageWrapper>
+      </main>
     </div>
   );
 }
