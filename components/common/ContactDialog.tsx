@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
-import { TbMailOpenedFilled } from 'react-icons/tb';
 import { CardCornerPixelBloom } from '@/components/common/CardCornerPixelBloom';
 import {
   Dialog,
@@ -34,14 +33,13 @@ export function ContactDialog({ open, onOpenChange }: ContactDialogProps) {
           </div>
 
           {/* Action Row */}
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            {/* Email Button */}
+          <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
+            {/* Email Button: không icon, padding nhỏ gọn */}
             <a
               href="mailto:letungduong1624@gmail.com"
-              className="group/btn relative overflow-hidden inline-flex items-center gap-2.5 px-5 sm:px-6 py-2.5 sm:py-3 rounded-2xl border border-text-black/10 bg-white/90 hover:bg-white hover:border-text-black/25 hover:shadow-md text-xs sm:text-sm font-semibold text-text-black transition-all duration-300 cursor-pointer"
+              className="group/btn relative overflow-hidden inline-flex items-center px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-text-black/10 bg-white/90 hover:bg-white hover:border-text-black/25 hover:shadow-md text-xs sm:text-sm font-semibold text-text-black transition-all duration-300 cursor-pointer"
             >
-              <TbMailOpenedFilled className="text-base sm:text-lg text-text-black/70 group-hover/btn:text-text-black transition-colors" />
-              <span>letungduong1624@gmail.com</span>
+              <span className="relative z-20 pointer-events-none">letungduong1624@gmail.com</span>
             </a>
 
             {/* LinkedIn */}
@@ -50,7 +48,7 @@ export function ContactDialog({ open, onOpenChange }: ContactDialogProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
-              className="p-2.5 sm:p-3 rounded-2xl border border-text-black/10 bg-white/90 hover:bg-white hover:border-text-black/25 hover:shadow-md text-text-black/70 hover:text-text-black transition-all duration-300 cursor-pointer"
+              className="p-2 sm:p-2.5 rounded-xl border border-text-black/10 bg-white/90 hover:bg-white hover:border-text-black/25 hover:shadow-md text-text-black/70 hover:text-text-black transition-all duration-300 cursor-pointer"
               title="LinkedIn Profile"
             >
               <FaLinkedin className="text-base sm:text-lg" />
@@ -62,7 +60,7 @@ export function ContactDialog({ open, onOpenChange }: ContactDialogProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="p-2.5 sm:p-3 rounded-2xl border border-text-black/10 bg-white/90 hover:bg-white hover:border-text-black/25 hover:shadow-md text-text-black/70 hover:text-text-black transition-all duration-300 cursor-pointer"
+              className="p-2 sm:p-2.5 rounded-xl border border-text-black/10 bg-white/90 hover:bg-white hover:border-text-black/25 hover:shadow-md text-text-black/70 hover:text-text-black transition-all duration-300 cursor-pointer"
               title="GitHub Profile"
             >
               <FaGithubSquare className="text-base sm:text-lg" />

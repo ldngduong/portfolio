@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
-import { TbMailOpenedFilled } from 'react-icons/tb';
 import { CardCornerPixelBloom } from '@/components/common/CardCornerPixelBloom';
 
 export function CtaSection() {
@@ -19,15 +18,14 @@ export function CtaSection() {
           </p>
         </div>
 
-        {/* Action Row */}
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-1">
-          {/* Email button */}
+        {/* Action Row: Giảm padding và xóa icon email */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1">
+          {/* Email button: không icon, padding nhỏ gọn */}
           <a
             href="mailto:letungduong1624@gmail.com"
-            className="group relative overflow-hidden inline-flex items-center gap-2.5 px-5 sm:px-6 py-2.5 sm:py-3 rounded-2xl border border-text-black/10 bg-white/70 hover:bg-white hover:border-text-black/25 hover:shadow-lg text-xs sm:text-sm font-semibold text-text-black transition-all duration-300 cursor-pointer"
+            className="group relative overflow-hidden inline-flex items-center px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-text-black/10 bg-white/70 hover:bg-white hover:border-text-black/25 hover:shadow-md text-xs sm:text-sm font-semibold text-text-black transition-all duration-300 cursor-pointer"
           >
             <CardCornerPixelBloom />
-            <TbMailOpenedFilled className="text-base sm:text-lg text-text-black/70 group-hover:text-text-black transition-colors relative z-20 pointer-events-none" />
             <span className="relative z-20 pointer-events-none">letungduong1624@gmail.com</span>
           </a>
 
@@ -37,7 +35,7 @@ export function CtaSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn Profile"
-            className="group relative overflow-hidden p-2.5 sm:p-3 rounded-2xl border border-text-black/10 bg-white/70 hover:bg-white hover:border-text-black/25 hover:shadow-lg text-text-black/70 hover:text-text-black transition-all duration-300 cursor-pointer"
+            className="group relative overflow-hidden p-2 sm:p-2.5 rounded-xl border border-text-black/10 bg-white/70 hover:bg-white hover:border-text-black/25 hover:shadow-md text-text-black/70 hover:text-text-black transition-all duration-300 cursor-pointer"
             title="LinkedIn Profile"
           >
             <CardCornerPixelBloom />
@@ -50,7 +48,7 @@ export function CtaSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="GitHub Profile"
-            className="group relative overflow-hidden p-2.5 sm:p-3 rounded-2xl border border-text-black/10 bg-white/70 hover:bg-white hover:border-text-black/25 hover:shadow-lg text-text-black/70 hover:text-text-black transition-all duration-300 cursor-pointer"
+            className="group relative overflow-hidden p-2 sm:p-2.5 rounded-xl border border-text-black/10 bg-white/70 hover:bg-white hover:border-text-black/25 hover:shadow-lg text-text-black/70 hover:text-text-black transition-all duration-300 cursor-pointer"
             title="GitHub Profile"
           >
             <CardCornerPixelBloom />
@@ -72,4 +70,3 @@ export function CtaSection() {
     </section>
   );
 }
-
