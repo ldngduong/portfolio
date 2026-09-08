@@ -7,9 +7,10 @@ import { cn } from "@/lib/utils"
 
 function ScrollArea({
   className,
+  contentClassName,
   children,
   ...props
-}: ScrollAreaPrimitive.Root.Props) {
+}: ScrollAreaPrimitive.Root.Props & { contentClassName?: string }) {
   return (
     <ScrollAreaPrimitive.Root
       data-slot="scroll-area"
@@ -20,7 +21,7 @@ function ScrollArea({
         data-slot="scroll-area-viewport"
         className="h-full w-full rounded-[inherit] outline-none"
       >
-        <ScrollAreaPrimitive.Content>
+        <ScrollAreaPrimitive.Content className={cn("min-h-full", contentClassName)}>
           {children}
         </ScrollAreaPrimitive.Content>
       </ScrollAreaPrimitive.Viewport>

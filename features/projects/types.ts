@@ -12,19 +12,24 @@ export interface ProjectItem {
   id: string;
   title: string;
   category?: string;
+  meta?: string;
+  role?: string;
   description: string;
   features: ProjectFeature[];
   techStack: string[];
   githubUrl?: string;
   demoUrl?: string;
   image: string | StaticImageData;
+  featured?: boolean;
 }
 
-export const PROJECTS_DATA: ProjectItem[] = [
+export const ALL_PROJECTS_DATA: ProjectItem[] = [
   {
     id: '01',
     title: 'Railflow',
     category: 'Full-Stack Web Platform',
+    meta: '2025',
+    role: 'Designer & Full-Stack Developer',
     description:
       'An online train ticketing platform featuring real-time seat reservation via Socket.IO, instant seat locking with Redis, GeoJSON route mapping with MapLibre GL, and VNPay integration.',
     features: [
@@ -54,17 +59,20 @@ export const PROJECTS_DATA: ProjectItem[] = [
           'Uses Google Gemini via AI SDK to help travelers query schedules, look up routes, and answer fare questions.',
       },
     ],
-    techStack: ['Next.js', 'NestJS', 'PostgreSQL', 'Prisma', 'Socket.IO', 'Redis', 'MapLibre GL', 'VNPay'],
+    techStack: ['Next.js', 'NestJS', 'PostgreSQL', 'Redis', 'Socket.IO', 'MapLibre GL'],
     githubUrl: 'https://github.com/letungduong24/train-booking',
     demoUrl: 'https://railflow.duongle.dev',
     image: railflow,
+    featured: true,
   },
   {
     id: '02',
     title: 'Seev',
     category: 'AI Career Intelligence',
+    meta: '2026',
+    role: 'Designer & Full-Stack Developer',
     description:
-      'An automated job aggregation and AI-powered CV analysis platform that scrapes tech job postings and evaluates resume compatibility.',
+      'An automated job aggregation and AI-powered CV analysis platform that scrapes tech job postings and evaluates resume compatibility with OpenAI & DeepSeek.',
     features: [
       {
         title: 'Automated Job Crawler',
@@ -87,9 +95,10 @@ export const PROJECTS_DATA: ProjectItem[] = [
           'Provides live WebSocket updates for crawling and scoring progress, with file storage managed on Cloudflare R2.',
       },
     ],
-    techStack: ['React', 'NestJS', 'FastAPI', 'Python', 'PostgreSQL', 'Redis', 'OpenAI', 'Docker'],
+    techStack: ['React', 'NestJS', 'FastAPI', 'Python', 'PostgreSQL', 'Redis', 'OpenAI'],
     githubUrl: 'https://github.com/letungduong24/seev',
     demoUrl: 'https://seev.duongle.dev',
     image: seev,
+    featured: true,
   },
 ];

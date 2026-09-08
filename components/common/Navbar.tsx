@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
 import { TbMailOpenedFilled } from "react-icons/tb";
 import { Menu } from "lucide-react";
@@ -11,29 +12,29 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { AboutSheet } from "@/features/about/components/AboutSheet";
-
-const navLinks = [
-  { href: "#projects", anchor: "projects", label: "Projects" },
-  { href: "#services", anchor: "services", label: "Services" },
-  { href: "#skills", anchor: "skills", label: "Skills" },
-  { href: "#contact", anchor: "contact", label: "Contact" },
-];
+import { ContactDialog } from "@/components/common/ContactDialog";
 
 export function Navbar() {
+  const pathname = usePathname();
+  const router = useRouter();
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const navigateTo = (anchor: string) => {
+  const isHome = pathname === "/";
+
+  const handleHomeClick = (e: React.MouseEvent) => {
     setIsMobileMenuOpen(false);
-    const api = (
-      window as unknown as {
-        fullpage_api?: { moveTo: (anchor: string) => void };
+    if (isHome) {
+      e.preventDefault();
+      const el = document.getElementById("hero");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
-    ).fullpage_api;
-    if (api?.moveTo) {
-      api.moveTo(anchor);
     } else {
-      window.location.hash = `#${anchor}`;
+      router.push("/");
     }
   };
 
@@ -42,58 +43,78 @@ export function Navbar() {
     setIsAboutOpen(true);
   };
 
+  const openContactModal = () => {
+    setIsMobileMenuOpen(false);
+    setIsContactOpen(true);
+  };
+
   return (
     <>
-      <div
+      <header
         id="navbar"
-        className="fixed top-0 z-50 inset-x-0 bg-transparent"
+        className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md transition-all border-b border-text-black/5"
       >
-        <nav className="flex items-center justify-between px-4 py-4 w-full">
+        <nav className="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between w-full">
           {/* Logo */}
           <Link
-            href="#hero"
-            onClick={(e) => {
-              e.preventDefault();
-              navigateTo("hero");
-            }}
+            href="/"
+            onClick={handleHomeClick}
             className="group text-lg sm:text-xl md:text-2xl font-bold tracking-tight transition-opacity duration-300 hover:opacity-75 select-none"
           >
             <span className="text-text-black">Duong</span>
             <span className="text-text-black/50">Le</span>
           </Link>
 
-          {/* Desktop Navigation - Pure Minimal Text Links (No background, No border box) */}
+          {/* Desktop Navigation: Home, Project, About, Contact */}
           <div className="hidden md:block">
-            <ul id="fp-menu" className="flex items-center gap-2 lg:gap-4 list-none m-0 p-0">
-              {navLinks.map((link) => (
-                <li key={link.href} data-menuanchor={link.anchor}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigateTo(link.anchor);
-                    }}
-                    className="md:text-xl font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none inline-block cursor-pointer"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+            <ul className="flex items-center gap-4 lg:gap-6 list-none m-0 p-0">
+              {/* Home */}
+              <li>
+                <Link
+                  href="/"
+                  onClick={handleHomeClick}
+                  className="text-base sm:text-lg font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none inline-block cursor-pointer"
+                >
+                  Home
+                </Link>
+              </li>
 
-              {/* Desktop About Trigger */}
+              {/* Project (Chuyển trực tiếp sang trang /projects) */}
+              <li>
+                <Link
+                  href="/projects"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-base sm:text-lg font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none inline-block cursor-pointer"
+                >
+                  Project
+                </Link>
+              </li>
+
+              {/* About */}
               <li>
                 <button
                   type="button"
-                  onClick={() => setIsAboutOpen(true)}
-                  className="md:text-xl font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none cursor-pointer bg-transparent border-none outline-none inline-block"
+                  onClick={openAboutModal}
+                  className="text-base sm:text-lg font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none cursor-pointer bg-transparent border-none outline-none inline-block"
                 >
                   About
+                </button>
+              </li>
+
+              {/* Contact (Mở Contact Dialog popup) */}
+              <li>
+                <button
+                  type="button"
+                  onClick={openContactModal}
+                  className="text-base sm:text-lg font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none cursor-pointer bg-transparent border-none outline-none inline-block"
+                >
+                  Contact
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Mobile Menu Trigger Button (3-line icon, no border) */}
+          {/* Mobile Menu Trigger Button */}
           <div className="flex md:hidden items-center">
             <button
               type="button"
@@ -105,7 +126,7 @@ export function Navbar() {
             </button>
           </div>
         </nav>
-      </div>
+      </header>
 
       {/* Mobile Drawer Sheet */}
       <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
@@ -113,12 +134,10 @@ export function Navbar() {
           side="right"
           className="w-[82vw] max-w-sm h-full flex flex-col justify-between p-6 sm:p-8 bg-background border-l border-text-black/10 z-50
           [&>button]:bg-text-black/5 [&>button]:hover:bg-text-black/15 [&>button]:border-none [&>button]:rounded-full [&>button]:z-50 [&>button]:top-4 [&>button]:right-4 transition-all"
-          onWheel={(e) => e.stopPropagation()}
-          onTouchMove={(e) => e.stopPropagation()}
         >
           <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
 
-          {/* Top Branding inside drawer */}
+          {/* Top Branding */}
           <div className="pt-2">
             <div className="text-xl font-bold tracking-tight text-text-black select-none">
               Duong<span className="text-text-black/50">Le</span>
@@ -128,16 +147,21 @@ export function Navbar() {
 
           {/* Middle Nav Links */}
           <nav className="flex flex-col gap-5 py-8" aria-label="Mobile main navigation">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                type="button"
-                onClick={() => navigateTo(link.anchor)}
-                className="text-2xl sm:text-3xl font-medium text-text-black text-left hover:opacity-60 transition-opacity cursor-pointer"
-              >
-                {link.label}
-              </button>
-            ))}
+            <Link
+              href="/"
+              onClick={handleHomeClick}
+              className="text-2xl sm:text-3xl font-medium text-text-black text-left hover:opacity-60 transition-opacity cursor-pointer"
+            >
+              Home
+            </Link>
+
+            <Link
+              href="/projects"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-2xl sm:text-3xl font-medium text-text-black text-left hover:opacity-60 transition-opacity cursor-pointer"
+            >
+              Project
+            </Link>
 
             <button
               type="button"
@@ -145,6 +169,14 @@ export function Navbar() {
               className="text-2xl sm:text-3xl font-medium text-text-black text-left hover:opacity-60 transition-opacity cursor-pointer"
             >
               About
+            </button>
+
+            <button
+              type="button"
+              onClick={openContactModal}
+              className="text-2xl sm:text-3xl font-medium text-text-black text-left hover:opacity-60 transition-opacity cursor-pointer"
+            >
+              Contact
             </button>
           </nav>
 
@@ -183,8 +215,11 @@ export function Navbar() {
         </SheetContent>
       </Sheet>
 
-      {/* Full-Screen Profile Sheet */}
+      {/* Full-Screen Profile About Sheet */}
       <AboutSheet open={isAboutOpen} onOpenChange={setIsAboutOpen} />
+
+      {/* Contact Dialog Popup */}
+      <ContactDialog open={isContactOpen} onOpenChange={setIsContactOpen} />
     </>
   );
 }

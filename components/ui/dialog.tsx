@@ -50,31 +50,33 @@ function DialogContent({
   return (
     <DialogPortal>
       <DialogOverlay />
-      <DialogPrimitive.Popup
-        data-slot="dialog-content"
-        className={cn(
-          "fixed top-1/2 left-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2 bg-background p-6 shadow-2xl border border-text-black/10 sm:rounded-lg duration-200 data-ending-style:opacity-0 data-ending-style:scale-95 data-starting-style:opacity-0 data-starting-style:scale-95",
-          className
-        )}
-        {...props}
-      >
-        {children}
-        {showCloseButton && (
-          <DialogPrimitive.Close
-            data-slot="dialog-close"
-            render={
-              <Button
-                variant="ghost"
-                className="absolute top-4 right-4 rounded-full p-2 text-text-black/60 hover:text-text-black hover:bg-text-black/5 transition-colors cursor-pointer"
-                size="icon-sm"
-              />
-            }
-          >
-            <XIcon className="w-4 h-4" />
-            <span className="sr-only">Close</span>
-          </DialogPrimitive.Close>
-        )}
-      </DialogPrimitive.Popup>
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+        <DialogPrimitive.Popup
+          data-slot="dialog-content"
+          className={cn(
+            "pointer-events-auto w-full max-w-lg bg-background p-6 shadow-2xl border border-text-black/10 rounded-3xl duration-200 data-ending-style:opacity-0 data-ending-style:scale-95 data-starting-style:opacity-0 data-starting-style:scale-95 relative",
+            className
+          )}
+          {...props}
+        >
+          {children}
+          {showCloseButton && (
+            <DialogPrimitive.Close
+              data-slot="dialog-close"
+              render={
+                <Button
+                  variant="ghost"
+                  className="absolute top-4 right-4 rounded-full p-2 text-text-black/60 hover:text-text-black hover:bg-text-black/5 transition-colors cursor-pointer"
+                  size="icon-sm"
+                />
+              }
+            >
+              <XIcon className="w-4 h-4" />
+              <span className="sr-only">Close</span>
+            </DialogPrimitive.Close>
+          )}
+        </DialogPrimitive.Popup>
+      </div>
     </DialogPortal>
   )
 }
