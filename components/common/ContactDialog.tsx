@@ -1,7 +1,9 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
+import { FaLinkedin } from 'react-icons/fa';
+import { Check } from 'lucide-react';
 import { CardCornerPixelBloom } from '@/components/common/CardCornerPixelBloom';
 import {
   Dialog,
@@ -16,6 +18,14 @@ interface ContactDialogProps {
 }
 
 export function ContactDialog({ open, onOpenChange }: ContactDialogProps) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('contact@duongle.dev');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="w-full max-w-lg sm:max-w-xl p-6 sm:p-8 rounded-3xl bg-white border border-text-black/10 shadow-2xl overflow-hidden relative group">
@@ -34,13 +44,22 @@ export function ContactDialog({ open, onOpenChange }: ContactDialogProps) {
 
           {/* Action Row */}
           <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
-            {/* Email Button: không icon, padding nhỏ gọn */}
-            <a
-              href="mailto:letungduong1624@gmail.com"
-              className="group/btn relative overflow-hidden inline-flex items-center px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-text-black/10 bg-white/90 hover:bg-white hover:border-text-black/25 hover:shadow-md text-xs sm:text-sm font-semibold text-text-black transition-all duration-300 cursor-pointer"
+            {/* Click-to-copy email button */}
+            <button
+              type="button"
+              onClick={handleCopyEmail}
+              className="group/btn relative overflow-hidden inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-text-black/10 bg-white/90 hover:bg-white hover:border-text-black/25 hover:shadow-md text-xs sm:text-sm font-semibold text-text-black transition-all duration-300 cursor-pointer"
+              title="Click to copy email"
             >
-              <span className="relative z-20 pointer-events-none">letungduong1624@gmail.com</span>
-            </a>
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-600" />
+                  <span className="text-emerald-700">Copied contact@duongle.dev!</span>
+                </>
+              ) : (
+                <span>contact@duongle.dev</span>
+              )}
+            </button>
 
             {/* LinkedIn */}
             <Link
@@ -52,18 +71,6 @@ export function ContactDialog({ open, onOpenChange }: ContactDialogProps) {
               title="LinkedIn Profile"
             >
               <FaLinkedin className="text-base sm:text-lg" />
-            </Link>
-
-            {/* GitHub */}
-            <Link
-              href="https://github.com/letungduong24"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub Profile"
-              className="p-2 sm:p-2.5 rounded-xl border border-text-black/10 bg-white/90 hover:bg-white hover:border-text-black/25 hover:shadow-md text-text-black/70 hover:text-text-black transition-all duration-300 cursor-pointer"
-              title="GitHub Profile"
-            >
-              <FaGithubSquare className="text-base sm:text-lg" />
             </Link>
           </div>
         </div>

@@ -17,7 +17,6 @@ export interface ProjectItem {
   description: string;
   features: ProjectFeature[];
   techStack: string[];
-  githubUrl?: string;
   demoUrl?: string;
   image: string | StaticImageData;
   featured?: boolean;
@@ -60,7 +59,6 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
       },
     ],
     techStack: ['Next.js', 'NestJS', 'PostgreSQL', 'Redis', 'Socket.IO', 'MapLibre GL'],
-    githubUrl: 'https://github.com/letungduong24/train-booking',
     demoUrl: 'https://railflow.duongle.dev',
     image: railflow,
     featured: true,
@@ -72,7 +70,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     meta: '2026',
     role: 'Designer & Full-Stack Developer',
     description:
-      'An automated job aggregation and AI-powered CV analysis platform that scrapes tech job postings and evaluates resume compatibility with OpenAI & DeepSeek.',
+      'An AI-powered platform for IT professionals to analyze CVs, assess job compatibility, and practice technical interviews.',
     features: [
       {
         title: 'Automated Job Crawler',
@@ -96,7 +94,6 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
       },
     ],
     techStack: ['React', 'NestJS', 'FastAPI', 'Python', 'PostgreSQL', 'Redis', 'OpenAI'],
-    githubUrl: 'https://github.com/letungduong24/seev',
     demoUrl: 'https://seev.duongle.dev',
     image: seev,
     featured: true,

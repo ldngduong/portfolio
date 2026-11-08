@@ -3,13 +3,21 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import HeroImage from '@/public/hero1hero.webp';
-import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
+import { FaLinkedin } from 'react-icons/fa';
 import { TbMailOpenedFilled } from 'react-icons/tb';
+import { Check } from 'lucide-react';
 import Link from 'next/link';
 import { AboutSheet } from '@/features/about/components/AboutSheet';
 
 export function HeroSection() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('contact@duongle.dev');
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000);
+  };
 
   return (
     <>
@@ -51,15 +59,19 @@ export function HeroSection() {
 
             {/* Contact Icons đặt dưới Role */}
             <div className="flex items-center gap-2.5 pt-1 text-text-black/70">
-              <Link
-                href="mailto:letungduong1624@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Send email"
-                className="hover:text-text-black transition-colors"
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                aria-label="Copy email"
+                title={emailCopied ? "Copied contact@duongle.dev!" : "Click to copy email"}
+                className="hover:text-text-black transition-colors cursor-pointer"
               >
-                <TbMailOpenedFilled className="text-lg sm:text-xl" />
-              </Link>
+                {emailCopied ? (
+                  <Check className="w-[18px] h-[18px] text-emerald-600" />
+                ) : (
+                  <TbMailOpenedFilled className="text-lg sm:text-xl" />
+                )}
+              </button>
 
               <Link
                 href="https://www.linkedin.com/in/toiladuong/"
@@ -69,16 +81,6 @@ export function HeroSection() {
                 className="hover:text-text-black transition-colors"
               >
                 <FaLinkedin className="text-lg sm:text-xl" />
-              </Link>
-
-              <Link
-                href="https://github.com/letungduong24"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub profile"
-                className="hover:text-text-black transition-colors"
-              >
-                <FaGithubSquare className="text-lg sm:text-xl" />
               </Link>
             </div>
           </div>
@@ -97,4 +99,3 @@ export function HeroSection() {
     </>
   );
 }
-

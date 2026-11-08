@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 import { TbMailOpenedFilled } from "react-icons/tb";
-import { Menu } from "lucide-react";
+import { Menu, Check } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -20,6 +20,13 @@ export function Navbar() {
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('contact@duongle.dev');
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000);
+  };
 
   const isHome = pathname === "/";
 
@@ -87,6 +94,16 @@ export function Navbar() {
                   className="text-base sm:text-lg font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none inline-block cursor-pointer"
                 >
                   Project
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/freelance"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-base sm:text-lg font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none inline-block cursor-pointer"
+                >
+                  Freelance
                 </Link>
               </li>
 
@@ -183,15 +200,19 @@ export function Navbar() {
           {/* Bottom Social Links inside drawer */}
           <div className="pt-6 border-t border-text-black/10">
             <div className="flex items-center gap-4 text-text-black/80">
-              <Link
-                href="mailto:letungduong1624@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={handleCopyEmail}
                 aria-label="Email Duong Le"
-                className="hover:opacity-60 transition-opacity"
+                title={emailCopied ? "Copied contact@duongle.dev!" : "Click to copy email"}
+                className="hover:opacity-60 transition-opacity cursor-pointer"
               >
-                <TbMailOpenedFilled className="text-2xl" />
-              </Link>
+                {emailCopied ? (
+                  <Check className="w-6 h-6 text-emerald-600" />
+                ) : (
+                  <TbMailOpenedFilled className="text-2xl" />
+                )}
+              </button>
               <Link
                 href="https://www.linkedin.com/in/toiladuong/"
                 target="_blank"
@@ -201,15 +222,7 @@ export function Navbar() {
               >
                 <FaLinkedin className="text-2xl" />
               </Link>
-              <Link
-                href="https://github.com/letungduong24"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub Profile"
-                className="hover:opacity-60 transition-opacity"
-              >
-                <FaGithubSquare className="text-2xl" />
-              </Link>
+              
             </div>
           </div>
         </SheetContent>

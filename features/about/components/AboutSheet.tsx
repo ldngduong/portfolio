@@ -1,7 +1,10 @@
 'use client';
 
+import { useState } from 'react';
+import { Check } from 'lucide-react';
+
 import Link from 'next/link';
-import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
+import { FaLinkedin } from 'react-icons/fa';
 import { TbMailOpenedFilled } from 'react-icons/tb';
 
 import {
@@ -142,6 +145,13 @@ const EDUCATION: EducationItem[] = [
 ];
 
 export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('contact@duongle.dev');
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 2000);
+  };
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
@@ -174,27 +184,32 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
 
                 {/* Contact Now CTA Button */}
                 <div className="pt-1 sm:pt-2">
-                  <a
-                    href="mailto:letungduong1624@gmail.com"
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
                     className="inline-flex items-center justify-center px-5 sm:px-6 py-2 sm:py-2.5 text-xs font-semibold text-white bg-text-black hover:bg-neutral-800 rounded-sm transition-colors cursor-pointer"
                   >
-                    Contact Now
-                  </a>
+                    {emailCopied ? 'Copied contact@duongle.dev!' : 'Contact Now'}
+                  </button>
                 </div>
               </div>
 
               {/* Bottom: Social Links */}
               <div className="pt-3 sm:pt-6">
                 <div className="flex items-center gap-4 text-text-black/75">
-                  <Link
-                    href="mailto:letungduong1624@gmail.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
                     aria-label="Email Duong Le"
-                    className="hover:opacity-60 transition-opacity"
+                    title={emailCopied ? "Copied contact@duongle.dev!" : "Click to copy email"}
+                    className="hover:opacity-60 transition-opacity cursor-pointer"
                   >
-                    <TbMailOpenedFilled className="text-xl sm:text-2xl" />
-                  </Link>
+                    {emailCopied ? (
+                      <Check className="w-5 h-5 text-emerald-600" />
+                    ) : (
+                      <TbMailOpenedFilled className="text-xl sm:text-2xl" />
+                    )}
+                  </button>
                   <Link
                     href="https://www.linkedin.com/in/toiladuong/"
                     target="_blank"
@@ -204,15 +219,7 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                   >
                     <FaLinkedin className="text-xl sm:text-2xl" />
                   </Link>
-                  <Link
-                    href="https://github.com/letungduong24"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub Profile"
-                    className="hover:opacity-60 transition-opacity"
-                  >
-                    <FaGithubSquare className="text-xl sm:text-2xl" />
-                  </Link>
+                  
                 </div>
               </div>
             </aside>

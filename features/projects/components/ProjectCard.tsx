@@ -10,7 +10,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const targetUrl = project.demoUrl || project.githubUrl || '#';
+  const targetUrl = project.demoUrl || '#';
 
   return (
     <Link

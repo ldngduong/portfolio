@@ -13,7 +13,7 @@ import {
   SiRedis,
   SiFigma,
   SiGit,
-  SiGithub,
+
   SiDocker,
   SiPostman,
 } from 'react-icons/si';
@@ -63,7 +63,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     title: 'DEVELOPMENT TOOLS',
     skills: [
       { name: 'Git', icon: SiGit, color: '#F05032' },
-      { name: 'GitHub', icon: SiGithub, color: '#181717' },
+
       { name: 'Docker', icon: SiDocker, color: '#2496ED' },
       { name: 'Postman', icon: SiPostman, color: '#FF6C37' },
     ],

@@ -1,15 +1,27 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
+import { FaLinkedin } from 'react-icons/fa';
+import { Check } from 'lucide-react';
 import { CardCornerPixelBloom } from '@/components/common/CardCornerPixelBloom';
 
 export function CtaSection() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('contact@duongle.dev');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
-    <section className="relative flex flex-col w-full bg-transparent select-none space-y-6 sm:space-y-8">
-      {/* Main Impact Body */}
-      <div className="w-full space-y-4 sm:space-y-5 flex flex-col items-center text-center">
-        <div className="space-y-1.5 sm:space-y-2 flex flex-col items-center w-full">
+    <section className="relative flex flex-col w-full select-none space-y-6 sm:space-y-8">
+      {/* Main Impact Card with Pixel Bloom */}
+      <div className="group relative overflow-hidden w-full p-6 sm:p-10 md:p-12 rounded-3xl border border-text-black/10 bg-white/80 shadow-md text-center flex flex-col items-center space-y-6">
+        <CardCornerPixelBloom alwaysActive />
+
+        <div className="space-y-2.5 max-w-xl relative z-20">
           <h2 className="w-full text-center text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-text-black leading-tight">
             Let&apos;s build something extraordinary together.
           </h2>
@@ -18,16 +30,24 @@ export function CtaSection() {
           </p>
         </div>
 
-        {/* Action Row: Giảm padding và xóa icon email */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 pt-1">
-          {/* Email button: không icon, padding nhỏ gọn */}
-          <a
-            href="mailto:letungduong1624@gmail.com"
-            className="group relative overflow-hidden inline-flex items-center px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-text-black/10 bg-white/70 hover:bg-white hover:border-text-black/25 hover:shadow-md text-xs sm:text-sm font-semibold text-text-black transition-all duration-300 cursor-pointer"
+        {/* Action Row */}
+        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 relative z-20 pt-1">
+          {/* Click-to-copy email button */}
+          <button
+            type="button"
+            onClick={handleCopyEmail}
+            className="group/btn relative overflow-hidden inline-flex items-center gap-1.5 px-4 sm:px-5 py-2.5 rounded-xl border border-text-black/10 bg-white/90 hover:bg-white hover:border-text-black/25 hover:shadow-md text-xs sm:text-sm font-semibold text-text-black transition-all duration-300 cursor-pointer"
+            title="Click to copy email"
           >
-            <CardCornerPixelBloom />
-            <span className="relative z-20 pointer-events-none">letungduong1624@gmail.com</span>
-          </a>
+            {copied ? (
+              <>
+                <Check className="w-4 h-4 text-emerald-600" />
+                <span className="text-emerald-700">Copied contact@duongle.dev!</span>
+              </>
+            ) : (
+              <span>contact@duongle.dev</span>
+            )}
+          </button>
 
           {/* LinkedIn Icon Button */}
           <Link
@@ -35,24 +55,10 @@ export function CtaSection() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="LinkedIn Profile"
-            className="group relative overflow-hidden p-2 sm:p-2.5 rounded-xl border border-text-black/10 bg-white/70 hover:bg-white hover:border-text-black/25 hover:shadow-md text-text-black/70 hover:text-text-black transition-all duration-300 cursor-pointer"
+            className="p-2.5 rounded-xl border border-text-black/10 bg-white/70 hover:bg-white hover:border-text-black/25 hover:shadow-md text-text-black/70 hover:text-text-black transition-all duration-300 cursor-pointer"
             title="LinkedIn Profile"
           >
-            <CardCornerPixelBloom />
-            <FaLinkedin className="text-base sm:text-lg relative z-20 pointer-events-none" />
-          </Link>
-
-          {/* GitHub Icon Button */}
-          <Link
-            href="https://github.com/letungduong24"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub Profile"
-            className="group relative overflow-hidden p-2 sm:p-2.5 rounded-xl border border-text-black/10 bg-white/70 hover:bg-white hover:border-text-black/25 hover:shadow-lg text-text-black/70 hover:text-text-black transition-all duration-300 cursor-pointer"
-            title="GitHub Profile"
-          >
-            <CardCornerPixelBloom />
-            <FaGithubSquare className="text-base sm:text-lg relative z-20 pointer-events-none" />
+            <FaLinkedin className="text-base sm:text-lg" />
           </Link>
         </div>
       </div>
