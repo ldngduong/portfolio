@@ -5,7 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import { ALL_PROJECTS_DATA, ProjectCard } from '@/features/projects';
 
 export function ProjectsSection() {
-  const featuredProjects = ALL_PROJECTS_DATA.slice(0, 2);
+  const featuredProjects = ALL_PROJECTS_DATA.filter((project) => project.featured);
 
   return (
     <section className="relative flex flex-col w-full bg-transparent select-none space-y-5 sm:space-y-6">

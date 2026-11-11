@@ -2,6 +2,7 @@ import type { StaticImageData } from 'next/image';
 
 import seev from '../../public/project/seev.webp';
 import railflow from '../../public/project/railflow.webp';
+import syncflow from '../../public/project/syncflow.webp';
 
 export interface ProjectFeature {
   title: string;
@@ -18,6 +19,7 @@ export interface ProjectItem {
   features: ProjectFeature[];
   techStack: string[];
   demoUrl?: string;
+  figmaUrl?: string;
   image: string | StaticImageData;
   featured?: boolean;
 }
@@ -96,6 +98,21 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     techStack: ['React', 'NestJS', 'FastAPI', 'Python', 'PostgreSQL', 'Redis', 'OpenAI'],
     demoUrl: 'https://seev.duongle.dev',
     image: seev,
+    featured: true,
+  },
+  {
+    id: '03',
+    title: 'SyncFlow',
+    category: 'SaaS Landing Page',
+    meta: '2026',
+    role: 'UI/UX Designer & Front-End Developer',
+    description:
+      'A responsive SaaS landing page for an AI workflow and collaboration concept, designed in Figma and built with React.',
+    features: [],
+    techStack: ['Figma', 'React', 'Vite', 'shadcn/ui'],
+    demoUrl: 'https://syncflow.duongle.dev',
+    figmaUrl: 'https://www.figma.com/design/9IklZ21HmUDD1eikzg3MNk/SyncFlow?node-id=61-64&t=hp7Y4gbQQ0JUFxeB-1',
+    image: syncflow,
     featured: true,
   },
 ];
