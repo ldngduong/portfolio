@@ -3,6 +3,7 @@ import type { StaticImageData } from 'next/image';
 import seev from '../../public/project/seev.webp';
 import railflow from '../../public/project/railflow.webp';
 import syncflow from '../../public/project/syncflow.webp';
+import arlab from '../../public/project/arlab.webp';
 
 export interface ProjectFeature {
   title: string;
@@ -113,6 +114,20 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     demoUrl: 'https://syncflow.duongle.dev',
     figmaUrl: 'https://www.figma.com/design/9IklZ21HmUDD1eikzg3MNk/SyncFlow?node-id=61-64&t=hp7Y4gbQQ0JUFxeB-1',
     image: syncflow,
+    featured: true,
+  },
+  {
+    id: '04',
+    title: 'ArLab',
+    category: 'Product Landing Page',
+    meta: '2026',
+    role: 'UI/UX Designer & Front-End Developer',
+    description:
+      'A storefront concept for the TRIMUI Brick Pro handheld, with a gameplay preview, a color and storage configurator, and a demo checkout.',
+    features: [],
+    techStack: ['Figma', 'React', 'Vite', 'shadcn/ui'],
+    demoUrl: 'https://arlab.duongle.dev',
+    image: arlab,
     featured: true,
   },
 ];
