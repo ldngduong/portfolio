@@ -10,7 +10,7 @@ import {
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-text-black selection:bg-text-black selection:text-white">
+    <div className="min-h-screen text-text-black selection:bg-primary selection:text-primary-foreground">
       {/* Sticky Header */}
       <Navbar />
 

@@ -1,4 +1,5 @@
 import type { StaticImageData } from 'next/image';
+import type { Locale } from '@/lib/preferences';
 
 import seev from '../../public/project/seev.webp';
 import railflow from '../../public/project/railflow.webp';
@@ -11,7 +12,7 @@ export interface ProjectFeature {
 }
 
 export interface ProjectItem {
-  id: string;
+  id: '01' | '02' | '03' | '04';
   title: string;
   category?: string;
   meta?: string;
@@ -131,3 +132,47 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     featured: true,
   },
 ];
+
+type ProjectCopy = Required<Pick<ProjectItem, 'role' | 'category' | 'description' | 'features'>>;
+
+const vi: Record<ProjectItem['id'], ProjectCopy> = {
+  '01': {
+    category: 'Nền tảng web full-stack',
+    role: 'Thiết kế và phát triển full-stack',
+    description: 'Nền tảng đặt vé tàu trực tuyến. Hỗ trợ giữ chỗ theo thời gian thực bằng Socket.IO và Redis, hiển thị tuyến đường với MapLibre GL và GeoJSON, và thanh toán qua VNPay.',
+    features: [
+      { title: 'Giữ chỗ theo thời gian thực', description: 'Dùng Socket.IO và Redis TTL để giữ chỗ tạm thời trong lúc khách thanh toán, tránh đặt trùng vé.' },
+      { title: 'Bản đồ tuyến đường tương tác', description: 'Hiển thị mạng lưới đường sắt, khoảng cách giữa các ga và điểm dừng bằng MapLibre GL và GeoJSON.' },
+      { title: 'Giá vé và ưu đãi', description: 'Tính giá theo hạng ghế hoặc giường nằm và áp dụng ưu đãi theo nhóm hành khách.' },
+      { title: 'Thanh toán trực tuyến và vé QR', description: 'Xác minh giao dịch VNPay và tạo vé điện tử có mã QR để lên tàu.' },
+      { title: 'Trợ lý AI tra cứu vé tàu', description: 'Dùng Google Gemini qua AI SDK để tra cứu lịch tàu, tuyến đường và giá vé.' },
+    ],
+  },
+  '02': {
+    category: 'Công cụ AI hỗ trợ tìm việc',
+    role: 'Thiết kế và phát triển full-stack',
+    description: 'Công cụ AI cho ứng viên ngành IT, hỗ trợ phân tích CV, đánh giá mức độ phù hợp với vị trí tuyển dụng và luyện phỏng vấn kỹ thuật.',
+    features: [
+      { title: 'Thu thập tin tuyển dụng', description: 'Thu thập và chuẩn hóa tin tuyển dụng IT từ TopCV, ITviec và VietnamWorks bằng quy trình bất đồng bộ với FastAPI và Firecrawl.' },
+      { title: 'Chấm điểm CV theo tiêu chí ATS', description: 'Dùng GPT-4o và DeepSeek để phân tích định dạng, từ khóa và kỹ năng còn thiếu trong CV dạng PDF.' },
+      { title: 'Đánh giá mức độ phù hợp với vị trí', description: 'Đối chiếu kinh nghiệm trong CV với yêu cầu tuyển dụng và xử lý tác vụ qua hàng đợi BullMQ.' },
+      { title: 'Cập nhật tiến độ theo thời gian thực', description: 'Dùng WebSocket để báo tiến độ thu thập dữ liệu và chấm điểm. Tệp được lưu trên Cloudflare R2.' },
+    ],
+  },
+  '03': {
+    category: 'Landing page cho SaaS',
+    role: 'Thiết kế UI/UX và phát triển frontend',
+    description: 'Landing page responsive cho ý tưởng sản phẩm SaaS hỗ trợ cộng tác và quản lý quy trình làm việc bằng AI. Thiết kế trên Figma và phát triển với React.',
+    features: [],
+  },
+  '04': {
+    category: 'Landing page sản phẩm',
+    role: 'Thiết kế UI/UX và phát triển frontend',
+    description: 'Bản mẫu cửa hàng cho máy chơi game cầm tay TRIMUI Brick Pro, có phần xem trước gameplay, chọn màu và dung lượng lưu trữ, cùng luồng thanh toán demo.',
+    features: [],
+  },
+};
+
+export function getProjects(locale: Locale): ProjectItem[] {
+  return locale === 'en' ? ALL_PROJECTS_DATA : ALL_PROJECTS_DATA.map((project) => ({ ...project, ...vi[project.id] }));
+}

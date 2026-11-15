@@ -1,5 +1,7 @@
 'use client';
 
+import { usePreferences } from '@/components/common/PreferencesProvider';
+
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
 import { SiFigma } from 'react-icons/si';
@@ -12,14 +14,15 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const { t } = usePreferences();
   return (
-    <article className="group relative overflow-hidden flex flex-col justify-between p-4 sm:p-5 rounded-2xl border border-text-black/10 bg-white/70 hover:bg-white hover:border-text-black/25 hover:shadow-lg transition-all duration-300">
+    <article className="group relative overflow-hidden flex flex-col justify-between p-4 sm:p-5 rounded-2xl border border-text-black/10 bg-card/70 hover:bg-card hover:border-text-black/25 hover:shadow-lg transition-all duration-300">
       {/* Hiệu ứng đuôi Pixel tỏa ra từ góc phải dưới cùng khi hover */}
       <CardCornerPixelBloom />
 
       <div className="w-full space-y-3.5 relative">
         {/* Project Mockup Image */}
-        <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-text-black/10 bg-neutral-100">
+        <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-text-black/10 bg-muted">
           <Image
             src={project.image}
             alt={project.title}
@@ -46,7 +49,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       <div className="mt-4 space-y-3">
-        <ul aria-label="Technology stack" className="flex flex-wrap items-center gap-x-3.5 gap-y-1 text-xs font-medium text-text-black/65">
+        <ul aria-label={t.technologyStack} className="flex flex-wrap items-center gap-x-3.5 gap-y-1 text-xs font-medium text-text-black/65">
           {project.techStack.slice(0, 4).map((tech) => (
             <li key={tech}>{tech}</li>
           ))}
@@ -63,10 +66,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Visit Site: ${project.title}`}
+              aria-label={`${t.visitSite} — ${project.title}`}
               className={buttonVariants({ className: 'h-10 gap-2 rounded-full px-3.5 text-xs cursor-pointer after:absolute after:inset-0' })}
             >
-              Visit Site <ArrowUpRight aria-hidden="true" />
+              {t.visitSite} <ArrowUpRight aria-hidden="true" />
             </a>
           )}
           {project.figmaUrl && (
@@ -74,7 +77,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               href={project.figmaUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Figma: ${project.title}`}
+              aria-label={`Figma — ${project.title}`}
               className={buttonVariants({ variant: 'outline', className: 'relative h-10 gap-2 rounded-full px-3.5 text-xs cursor-pointer' })}
             >
               <SiFigma aria-hidden="true" /> Figma

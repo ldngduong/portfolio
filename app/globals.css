@@ -8,12 +8,12 @@ nextjs-portal {
   display: none !important;
 }
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-text-black: var(--text-black);
+  --color-text-black: var(--foreground);
   --color-text-white: var(--text-white);
   --color-text-accent: var(--text-accent);
   --font-sans: var(--font-roboto);
@@ -60,7 +60,6 @@ nextjs-portal {
 :root {
   --background: #FFFFFF;
   --foreground: #171717;
-  --text-black: #171717;
   --text-white: #FFFFFF;
   --text-accent: #DF5839;
   --card: #FFFFFF;
@@ -98,19 +97,18 @@ nextjs-portal {
 .dark {
   --background: #1E1E1E;
   --foreground: #F7F7F7;
-  --text-black: #212121;
   --text-white: #F7F7F7;
-  --text-accent: #DF5839;
-  --card: #1E1E1E;
+  --text-accent: #F5876C;
+  --card: #272523;
   --card-foreground: #F7F7F7;
-  --popover: #1E1E1E;
+  --popover: #272523;
   --popover-foreground: #F7F7F7;
   --primary: #E0E0E0;
   --primary-foreground: #212121;
   --secondary: #212121;
   --secondary-foreground: #DF5839;
-  --muted: #212121;
-  --muted-foreground: #DF5839;
+  --muted: #2C2A28;
+  --muted-foreground: #B5ACA8;
   --accent: #E0E0E0;
   --accent-foreground: #212121;
   --destructive: oklch(0.704 0.191 22.216);
@@ -141,5 +139,9 @@ nextjs-portal {
   }
   html {
     @apply font-sans scroll-smooth;
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
   }
 }

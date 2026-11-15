@@ -1,5 +1,8 @@
 'use client';
 
+import { usePreferences } from '@/components/common/PreferencesProvider';
+import { getEducation } from '@/features/education/data';
+
 import { useState } from 'react';
 import { Check } from 'lucide-react';
 
@@ -13,64 +16,15 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { EXPERIENCES } from '@/features/experience/data';
+import { getExperiences } from '@/features/experience/data';
 
 interface AboutSheetProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-interface EducationItem {
-  id: string;
-  title: string;
-  institution: string;
-  period: string;
-  honors?: string;
-  description: string[];
-  skills: string[];
-}
-
-const EDUCATION: EducationItem[] = [
-  {
-    id: 'tlu',
-    title: 'Bachelor of Software Engineering',
-    institution: 'Thuyloi University (TLU)',
-    period: '10/2022 — 8/2026',
-    honors: 'Graduated with Honors',
-    description: [
-      'Completed a 4-year engineering curriculum covering Software Architecture, Algorithms & Data Structures, Database Systems, Object-Oriented Design, and Fullstack Web Development.',
-      'Graduated with honors; led capstone engineering projects applying agile software methodologies.',
-    ],
-    skills: [
-      'Software Architecture',
-      'Data Structures & Algorithms',
-      'Database Systems',
-      'OOP Design',
-      'System Analysis',
-    ],
-  },
-  {
-    id: 'udemy-figma',
-    title: 'Learn Figma: UI/UX Design Masterclass',
-    institution: 'Udemy',
-    period: '2025',
-    honors: 'Certificate of Completion',
-    description: [
-      'Mastered end-to-end UI/UX product design workflows from fundamental principles to production-ready design systems.',
-      'Built interactive high-fidelity prototypes, component architectures, auto layout rules, design tokens, and seamless developer handoffs.',
-    ],
-    skills: [
-      'Figma',
-      'UI/UX Design',
-      'Design Systems',
-      'Prototyping',
-      'Auto Layout',
-      'Design Tokens',
-    ],
-  },
-];
-
 export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
+  const { locale, t } = usePreferences();
   const [emailCopied, setEmailCopied] = useState(false);
 
   const handleCopyEmail = () => {
@@ -87,7 +41,7 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
         onWheel={(e) => e.stopPropagation()}
         onTouchMove={(e) => e.stopPropagation()}
       >
-        <SheetTitle className="sr-only">About Duong Le - Profile & Experience</SheetTitle>
+        <SheetTitle className="sr-only">{t.aboutTitle}</SheetTitle>
 
         <div className="flex-1 min-h-0 w-full h-full overflow-hidden">
           <div className="h-full w-full max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-12 overflow-hidden">
@@ -101,10 +55,10 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                     Duong Le
                   </h1>
                   <h2 className="text-sm sm:text-base lg:text-lg font-medium text-text-black/80">
-                    Software Engineer
+                    {t.role}
                   </h2>
                   <p className="text-xs sm:text-sm text-text-black/65 pt-0.5 sm:pt-1 leading-relaxed max-w-xs sm:max-w-sm">
-                    Building scalable web applications with clean architecture — bridging smooth frontend with high-performance backends.
+                    {t.aboutSummary}
                   </p>
                 </div>
 
@@ -113,9 +67,9 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="inline-flex items-center justify-center px-5 sm:px-6 py-2 sm:py-2.5 text-xs font-semibold text-white bg-text-black hover:bg-neutral-800 rounded-sm transition-colors cursor-pointer"
+                    className="inline-flex items-center justify-center px-5 sm:px-6 py-2 sm:py-2.5 text-xs font-semibold text-primary-foreground bg-primary hover:bg-primary/85 rounded-sm transition-colors cursor-pointer"
                   >
-                    {emailCopied ? 'Copied contact@duongle.dev!' : 'Contact Now'}
+                    {emailCopied ? t.emailCopied : t.copyEmail}
                   </button>
                 </div>
               </div>
@@ -126,12 +80,12 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    aria-label="Email Duong Le"
-                    title={emailCopied ? "Copied contact@duongle.dev!" : "Click to copy email"}
+                    aria-label={emailCopied ? t.emailCopied : t.copyEmail}
+                    title={emailCopied ? t.emailCopied : t.copyEmail}
                     className="hover:opacity-60 transition-opacity cursor-pointer"
                   >
                     {emailCopied ? (
-                      <Check className="w-5 h-5 text-emerald-600" />
+                      <Check className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                     ) : (
                       <TbMailOpenedFilled className="text-xl sm:text-2xl" />
                     )}
@@ -140,7 +94,7 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                     href="https://www.linkedin.com/in/toiladuong/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="LinkedIn Profile"
+                    aria-label={t.linkedIn}
                     className="hover:opacity-60 transition-opacity"
                   >
                     <FaLinkedin className="text-xl sm:text-2xl" />
@@ -151,7 +105,7 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
             </aside>
 
             {/* RIGHT COLUMN: Scrollable Content */}
-            <main className="lg:col-span-7 flex-1 min-h-0 overflow-hidden flex flex-col bg-background">
+            <main className="lg:col-span-7 flex-1 min-h-0 overflow-hidden flex flex-col">
               <ScrollArea
                 className="flex-1 h-full w-full"
                 onWheel={(e) => e.stopPropagation()}
@@ -162,14 +116,14 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                   {/* ABOUT */}
                   <section id="sheet-about" className="space-y-3 scroll-mt-8">
                     <h2 className="lg:hidden text-xs font-semibold text-text-black/50">
-                      About
+                      {t.about}
                     </h2>
                     <div className="space-y-3 text-xs sm:text-sm text-text-black/75 leading-relaxed font-normal">
                       <p>
-                        I am a Software Engineer focused on building fast, accessible, and maintainable digital products. I combine responsive frontend engineering in <strong>Next.js</strong>, <strong>React</strong>, and <strong>TypeScript</strong> with solid backend foundations in <strong>Node.js</strong> and <strong>PostgreSQL</strong>.
+                        {t.bio}
                       </p>
                       <p>
-                        Whether turning intricate Figma designs into production-ready web apps or architecting scalable backend APIs, I prioritize clean code structure, performance optimization, and thoughtful user interactions.
+                        {t.aboutDetails}
                       </p>
                     </div>
                   </section>
@@ -177,7 +131,7 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                   {/* EXPERIENCE (Roadmap) */}
                   <section id="sheet-experience" className="space-y-6 scroll-mt-8">
                     <h2 className="text-xs font-semibold text-text-black/50">
-                      Experience
+                      {t.experience}
                     </h2>
 
                     {/* Timeline Container with vertical roadmap track */}
@@ -185,7 +139,7 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                       {/* Vertical line connecting roadmap items */}
                       <div className="absolute left-[7px] top-2 bottom-2 w-[1px] bg-text-black/20" />
 
-                      {EXPERIENCES.map((exp) => (
+                      {getExperiences(locale).map((exp) => (
                         <div key={exp.id} className="relative group">
                           {/* Roadmap Node Dot */}
                           <div className="absolute -left-[21px] -translate-x-1/2 top-1.5 w-3.5 h-3.5 rounded-full border border-text-black/40 bg-background flex items-center justify-center">
@@ -239,13 +193,13 @@ export function AboutSheet({ open, onOpenChange }: AboutSheetProps) {
                   {/* EDUCATION & CERTIFICATES */}
                   <section id="sheet-education" className="space-y-6 scroll-mt-8">
                     <h2 className="text-xs font-semibold text-text-black/50">
-                      Education & Certifications
+                      {t.education}
                     </h2>
 
                     <div className="relative pl-7 space-y-8">
                       <div className="absolute left-[7px] top-2 bottom-2 w-[1px] bg-text-black/20" />
 
-                      {EDUCATION.map((item) => (
+                      {getEducation(locale).map((item) => (
                         <div key={item.id} className="relative group">
                           {/* Roadmap Node Dot */}
                           <div className="absolute -left-[21px] -translate-x-1/2 top-1.5 w-3.5 h-3.5 rounded-full border border-text-black/40 bg-background flex items-center justify-center">

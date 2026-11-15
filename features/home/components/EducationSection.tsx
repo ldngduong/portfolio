@@ -1,62 +1,16 @@
 'use client';
 
-interface EducationItem {
-  id: string;
-  title: string;
-  institution: string;
-  period: string;
-  honors?: string;
-  description: string[];
-  skills: string[];
-}
-
-const EDUCATION: EducationItem[] = [
-  {
-    id: 'tlu',
-    title: 'Bachelor of Software Engineering',
-    institution: 'Thuyloi University (TLU)',
-    period: '10/2022 — 8/2026',
-    honors: 'Graduated with Honors',
-    description: [
-      'Completed a 4-year engineering curriculum covering Software Architecture, Algorithms & Data Structures, Database Systems, Object-Oriented Design, and Fullstack Web Development.',
-      'Graduated with honors; led capstone engineering projects applying agile software methodologies.',
-    ],
-    skills: [
-      'Software Architecture',
-      'Data Structures & Algorithms',
-      'Database Systems',
-      'OOP Design',
-      'System Analysis',
-    ],
-  },
-  {
-    id: 'udemy-figma',
-    title: 'Learn Figma: UI/UX Design Masterclass',
-    institution: 'Udemy',
-    period: '2025',
-    honors: 'Certificate of Completion',
-    description: [
-      'Mastered end-to-end UI/UX product design workflows from fundamental principles to production-ready design systems.',
-      'Built interactive high-fidelity prototypes, component architectures, auto layout rules, design tokens, and seamless developer handoffs.',
-    ],
-    skills: [
-      'Figma',
-      'UI/UX Design',
-      'Design Systems',
-      'Prototyping',
-      'Auto Layout',
-      'Design Tokens',
-    ],
-  },
-];
+import { usePreferences } from '@/components/common/PreferencesProvider';
+import { getEducation } from '@/features/education/data';
 
 export function EducationSection() {
+  const { locale, t } = usePreferences();
   return (
     <section className="relative flex flex-col w-full bg-transparent select-none space-y-5 sm:space-y-6">
       {/* Title */}
       <div className="w-full flex items-center justify-between">
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-text-black">
-          Education & Certifications
+          {t.education}
         </h2>
       </div>
 
@@ -65,7 +19,7 @@ export function EducationSection() {
         {/* Vertical line connecting roadmap items */}
         <div className="absolute left-[7px] top-2.5 bottom-2.5 w-[1px] bg-text-black/20" />
 
-        {EDUCATION.map((item) => (
+        {getEducation(locale).map((item) => (
           <div key={item.id} className="relative group">
             {/* Roadmap Node Dot */}
             <div className="absolute -left-[21px] -translate-x-1/2 top-1.5 w-3.5 h-3.5 rounded-full border border-text-black/40 bg-background flex items-center justify-center">

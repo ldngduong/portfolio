@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { usePreferences } from './PreferencesProvider';
 
 interface CardCornerPixelBloomProps {
   alwaysActive?: boolean;
@@ -8,6 +9,7 @@ interface CardCornerPixelBloomProps {
 
 export function CardCornerPixelBloom({ alwaysActive = false }: CardCornerPixelBloomProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const { theme } = usePreferences();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -29,6 +31,7 @@ export function CardCornerPixelBloom({ alwaysActive = false }: CardCornerPixelBl
       const rect = parent.getBoundingClientRect();
       canvas.width = rect.width;
       canvas.height = rect.height;
+      ctx.fillStyle = getComputedStyle(canvas).color;
     };
 
     resize();
@@ -93,7 +96,7 @@ export function CardCornerPixelBloom({ alwaysActive = false }: CardCornerPixelBl
                 (0.015 + (alwaysActive ? 0.12 : 0.14) * distFactor * shimmer) * progress;
 
               if (alpha > 0.004) {
-                ctx.fillStyle = `rgba(0, 0, 0, ${alpha})`;
+                ctx.globalAlpha = alpha;
                 ctx.fillRect(cellX, cellY, CELL_SIZE, CELL_SIZE);
               }
             }
@@ -114,13 +117,13 @@ export function CardCornerPixelBloom({ alwaysActive = false }: CardCornerPixelBl
         parent.removeEventListener('mouseleave', onMouseLeave);
       }
     };
-  }, [alwaysActive]);
+  }, [alwaysActive, theme]);
 
   return (
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 z-0 w-full h-full rounded-2xl select-none"
+      className="pointer-events-none absolute inset-0 z-0 w-full h-full rounded-2xl select-none text-foreground"
     />
   );
 }

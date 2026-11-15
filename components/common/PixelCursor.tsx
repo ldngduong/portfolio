@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { usePreferences } from './PreferencesProvider';
 
 interface TrailPixel {
   gx: number;
@@ -13,6 +14,7 @@ interface TrailPixel {
 
 export function PixelCursor() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const { theme } = usePreferences();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -32,6 +34,7 @@ export function PixelCursor() {
     const resize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      ctx.fillStyle = getComputedStyle(canvas).color;
     };
 
     resize();
@@ -146,7 +149,7 @@ export function PixelCursor() {
         const alpha = p.maxAlpha * p.life * shimmer;
 
         if (alpha > 0.002) {
-          ctx.fillStyle = `rgba(0, 0, 0, ${alpha})`;
+          ctx.globalAlpha = alpha;
           ctx.fillRect(
             p.gx * TOTAL_CELL,
             p.gy * TOTAL_CELL,
@@ -169,13 +172,13 @@ export function PixelCursor() {
       document.removeEventListener('mouseleave', onPointerLeave);
       document.removeEventListener('touchend', onPointerLeave);
     };
-  }, []);
+  }, [theme]);
 
   return (
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-0 w-full h-full select-none"
+      className="pointer-events-none fixed inset-0 z-0 w-full h-full select-none text-foreground"
     />
   );
 }

@@ -1,14 +1,17 @@
 'use client';
 
-import { EXPERIENCES } from '@/features/experience/data';
+import { usePreferences } from '@/components/common/PreferencesProvider';
+
+import { getExperiences } from '@/features/experience/data';
 
 export function ExperienceSection() {
+  const { locale, t } = usePreferences();
   return (
     <section className="relative flex flex-col w-full bg-transparent select-none space-y-5 sm:space-y-6">
       {/* Title */}
       <div className="w-full flex items-center justify-between">
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-text-black">
-          Experience
+          {t.experience}
         </h2>
       </div>
 
@@ -17,7 +20,7 @@ export function ExperienceSection() {
         {/* Vertical line connecting roadmap items */}
         <div className="absolute left-[7px] top-2.5 bottom-2.5 w-[1px] bg-text-black/20" />
 
-        {EXPERIENCES.map((exp) => (
+        {getExperiences(locale).map((exp) => (
           <div key={exp.id} className="relative group">
             {/* Roadmap Node Dot */}
             <div className="absolute -left-[21px] -translate-x-1/2 top-1.5 w-3.5 h-3.5 rounded-full border border-text-black/40 bg-background flex items-center justify-center">

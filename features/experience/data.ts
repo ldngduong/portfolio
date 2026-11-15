@@ -1,5 +1,7 @@
+import type { Locale } from '@/lib/preferences';
+
 interface ExperienceItem {
-  id: string;
+  id: '3nest-invest' | 'ecco' | 'freelance';
   role: string;
   company: string;
   companyVn?: string;
@@ -9,7 +11,7 @@ interface ExperienceItem {
   techStack: string[];
 }
 
-export const EXPERIENCES: ExperienceItem[] = [
+const EXPERIENCES: ExperienceItem[] = [
   {
     id: '3nest-invest',
     role: 'Software Developer',
@@ -59,9 +61,9 @@ export const EXPERIENCES: ExperienceItem[] = [
     period: '2024 — Present',
     location: 'Remote',
     description: [
-      'Delivered bespoke web applications, landing pages, and interactive client platforms from Figma concepts to production deployment.',
-      'Transformed complex design layouts into pixel-perfect, accessible code with responsive behaviors and web performance optimization.',
-      'Managed client communication, technical requirements scoping, and automated deployment pipelines on Vercel.',
+      'Developed web applications and landing pages from Figma designs through production deployment.',
+      'Built responsive interfaces and checked accessibility and page performance.',
+      'Defined technical requirements with clients and automated deployments on Vercel.',
     ],
     techStack: [
       'React',
@@ -73,3 +75,45 @@ export const EXPERIENCES: ExperienceItem[] = [
     ],
   },
 ];
+
+type ExperienceCopy = Pick<ExperienceItem, 'role' | 'period' | 'description'> &
+  Partial<Pick<ExperienceItem, 'company' | 'companyVn' | 'location'>>;
+
+const vi: Record<ExperienceItem['id'], ExperienceCopy> = {
+  '3nest-invest': {
+    role: 'Software Developer',
+    period: '11/2025 – nay',
+    location: 'Hà Nội, Việt Nam',
+    description: [
+      'Phát triển giao diện web và dashboard cho khách hàng với Next.js, React và TypeScript.',
+      'Xây dựng dịch vụ backend và REST API với NestJS, đồng thời tích hợp API vào frontend.',
+      'Từng viết script web scraping để tự động thu thập dữ liệu từ website.',
+    ],
+  },
+  ecco: {
+    role: 'Thực tập sinh Backend Developer',
+    companyVn: 'Trung tâm Phát triển Kinh tế và Cộng đồng',
+    period: '01/2026 – 02/2026',
+    location: 'Hà Nội, Việt Nam',
+    description: [
+      'Phát triển và bảo trì REST API cho các nền tảng phục vụ cộng đồng.',
+      'Thiết kế mô hình dữ liệu quan hệ, thực hiện migration và tối ưu truy vấn SQL trên PostgreSQL.',
+      'Kiểm tra dữ liệu đầu vào, xử lý lỗi API và kiểm thử endpoint bằng Postman và Docker.',
+    ],
+  },
+  freelance: {
+    role: 'Lập trình viên freelance',
+    company: 'Làm việc độc lập',
+    period: '2024 – nay',
+    location: 'Từ xa',
+    description: [
+      'Phát triển ứng dụng web và landing page từ bản thiết kế Figma đến khi triển khai.',
+      'Xây dựng giao diện responsive, kiểm tra khả năng tiếp cận và hiệu năng tải trang.',
+      'Trao đổi yêu cầu kỹ thuật với khách hàng và tự động hóa quy trình triển khai trên Vercel.',
+    ],
+  },
+};
+
+export function getExperiences(locale: Locale): ExperienceItem[] {
+  return locale === 'en' ? EXPERIENCES : EXPERIENCES.map((item) => ({ ...item, ...vi[item.id] }));
+}

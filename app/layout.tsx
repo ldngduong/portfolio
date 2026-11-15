@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Roboto, Geist_Mono } from "next/font/google";
 import { PixelCursor } from "@/components/common/PixelCursor";
 import { LoadingScreen } from "@/components/common/LoadingScreen";
+import { PreferencesProvider } from "@/components/common/PreferencesProvider";
+import { getPreferences } from "@/lib/server-preferences";
+import { copy } from "@/lib/copy";
 import "./globals.css";
 
 const roboto = Roboto({
@@ -16,26 +19,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Duong Le — Portfolio",
-  description: "Personal Portfolio of Duong Le",
-  icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { locale } = await getPreferences();
+  return {
+    title: "Duong Le — Portfolio",
+    description: copy[locale].bio,
+    icons: { icon: "/logo.png", shortcut: "/logo.png", apple: "/logo.png" },
+  };
+}
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const preferences = await getPreferences();
   return (
     <html
-      lang="vi"
-      className={`${roboto.variable} ${geistMono.variable} antialiased`}
+      lang={preferences.locale}
+      className={`${roboto.variable} ${geistMono.variable} antialiased ${preferences.theme === 'dark' ? 'dark' : ''}`}
     >
       <body className="font-sans bg-background text-foreground relative">
-        <LoadingScreen />
-        <PixelCursor />
-        {children}
+        <PreferencesProvider preferences={preferences}>
+          <LoadingScreen />
+          <PixelCursor />
+          {children}
+        </PreferencesProvider>
       </body>
     </html>
   );

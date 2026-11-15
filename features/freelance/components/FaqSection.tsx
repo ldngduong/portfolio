@@ -1,11 +1,14 @@
 'use client';
 
+import { usePreferences } from '@/components/common/PreferencesProvider';
+
 import { useState } from 'react';
-import { FREELANCE_FAQS } from '../data';
+import { getFaqs } from '../data';
 import { Plus, Minus } from 'lucide-react';
 import { CardCornerPixelBloom } from '@/components/common/CardCornerPixelBloom';
 
 export function FaqSection() {
+  const { locale, t } = usePreferences();
   const [openId, setOpenId] = useState<string | null>('faq-1');
 
   const toggleFaq = (id: string) => {
@@ -17,21 +20,18 @@ export function FaqSection() {
       {/* Section Header - Full Width */}
       <div className="space-y-1.5 w-full">
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-text-black">
-          Frequently Asked Questions
+          {t.faq}
         </h2>
-        <p className="text-xs sm:text-sm md:text-base text-text-black/70 w-full font-normal leading-relaxed">
-          Everything you need to know about starting a project, communication channels, and delivery expectations.
-        </p>
       </div>
 
       {/* FAQ Accordion List */}
       <div className="space-y-3 w-full">
-        {FREELANCE_FAQS.map((faq) => {
+        {getFaqs(locale).map((faq) => {
           const isOpen = openId === faq.id;
           return (
             <div
               key={faq.id}
-              className="group relative overflow-hidden rounded-2xl border border-text-black/10 bg-white/70 hover:bg-white transition-all duration-300"
+              className="group relative overflow-hidden rounded-2xl border border-text-black/10 bg-card/70 hover:bg-card transition-all duration-300"
             >
               <CardCornerPixelBloom />
 

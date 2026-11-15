@@ -1,25 +1,28 @@
 'use client';
 
+import { usePreferences } from '@/components/common/PreferencesProvider';
+
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { ALL_PROJECTS_DATA, ProjectCard } from '@/features/projects';
+import { getProjects, ProjectCard } from '@/features/projects';
 
 export function ProjectsSection() {
-  const featuredProjects = ALL_PROJECTS_DATA.filter((project) => project.featured);
+  const { locale, t } = usePreferences();
+  const featuredProjects = getProjects(locale).filter((project) => project.featured);
 
   return (
     <section className="relative flex flex-col w-full bg-transparent select-none space-y-5 sm:space-y-6">
       {/* Title Projects & Link to full projects page */}
       <div className="w-full flex items-center justify-between">
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-text-black">
-          Projects
+          {t.projects}
         </h2>
 
         <Link
           href="/projects"
           className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-text-black/60 hover:text-text-black transition-colors group cursor-pointer"
         >
-          <span>View all projects</span>
+          <span>{t.viewAllProjects}</span>
           <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
         </Link>
       </div>

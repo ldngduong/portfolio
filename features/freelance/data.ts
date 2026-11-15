@@ -1,101 +1,125 @@
-export interface FreelanceService {
+import type { Locale } from '@/lib/preferences';
+
+interface FreelanceService {
   id: string;
   title: string;
-  subtitle: string;
   description: string;
   highlights: string[];
 }
 
-export interface FaqItem {
+interface FaqItem {
   id: string;
   question: string;
   answer: string;
 }
 
-export const FREELANCE_SERVICES: FreelanceService[] = [
-  {
-    id: 'web-app',
-    title: 'Full-Stack Web Applications',
-    subtitle: 'SaaS platforms, client portals & management dashboards',
-    description:
-      'End-to-end web application development covering both frontend and backend. From responsive client interfaces to scalable APIs, databases, authentication, and third-party integrations.',
-    highlights: [
-      'Frontend development with Next.js, React, TypeScript, and Tailwind CSS',
-      'Backend engineering with Node.js, NestJS, and REST / WebSocket APIs',
-      'Database architecture, migrations & caching with PostgreSQL, Prisma, and Redis',
-      'Authentication, role-based access control (RBAC), and payment gateway integrations',
-    ],
-  },
-  {
-    id: 'landing-page',
-    title: 'Landing Pages',
-    subtitle: 'High-converting, fast marketing websites',
-    description:
-      'Crafting modern, conversion-focused landing pages designed to showcase your product, capture leads, and make a strong first impression.',
-    highlights: [
-      'Bespoke responsive design optimized for all screen sizes',
-      'Fast load speeds with optimized Core Web Vitals and technical SEO',
-      'Smooth scroll interactions and subtle micro-animations',
-      'Contact forms, analytics tracking, and lead capture integration',
-    ],
-  },
-  {
-    id: 'mobile-app',
-    title: 'Mobile Apps',
-    subtitle: 'Cross-platform iOS & Android applications',
-    description:
-      'Developing smooth, intuitive mobile applications with React Native and Expo, bringing your product to iOS and Android from a unified codebase.',
-    highlights: [
-      'Cross-platform apps built with React Native and Expo',
-      'Smooth native performance, fluid gestures, and responsive layouts',
-      'Offline storage, push notifications, and API synchronization',
-      'Store readiness and build configurations for App Store & Google Play',
-    ],
-  },
-  {
-    id: 'figma-design',
-    title: 'Figma Design & UI/UX',
-    subtitle: 'Product prototypes & design systems',
-    description:
-      'Designing user-friendly interfaces and interactive prototypes that turn raw product concepts into clear, developer-ready specifications.',
-    highlights: [
-      'User flows, wireframing, and intuitive interface design',
-      'Clickable, interactive Figma prototypes for testing and validation',
-      'Organized design systems with auto-layout, tokens, and reusable components',
-      'Clean developer handoff with ready-to-inspect assets and styles',
-    ],
-  },
-];
+export function getServices(locale: Locale): FreelanceService[] {
+  const vi = locale === 'vi';
 
-export const FREELANCE_FAQS: FaqItem[] = [
-  {
-    id: 'faq-1',
-    question: 'What kinds of projects do you take on?',
-    answer:
-      'I specialize in Full-Stack Web Applications & SaaS platforms, high-converting Landing Pages, cross-platform Mobile Apps (iOS & Android via React Native/Expo), and comprehensive UI/UX Figma Design. Whether you need a product built from scratch (0 to 1), a modern redesign, or a fast MVP, I can help.',
-  },
-  {
-    id: 'faq-2',
-    question: 'How long does a typical freelance project take?',
-    answer:
-      'Timelines depend on scope: Landing pages typically take 1 to 2 weeks. Full-featured Web Apps or MVPs range between 3 to 6 weeks. Mobile applications generally take 4 to 8 weeks. We will define an exact schedule during our initial discovery discussion.',
-  },
-  {
-    id: 'faq-3',
-    question: 'Can you handle both UI/UX design and development?',
-    answer:
-      'Yes, absolutely. Being able to execute both design and full-stack code is my key strength. You eliminate the hassle and cost of coordinating separate designers and developers. I take your vision from wireframes and Figma prototypes straight to production-ready deployed code.',
-  },
-  {
-    id: 'faq-4',
-    question: 'How do we communicate and track progress?',
-    answer:
-      'We communicate via your preferred channel — Slack, Telegram, Discord, or Email — with weekly video checkpoints if desired. You will have full access to interactive Figma files, a task roadmap, and staging links to test working features in real time.',
-  },
-  {
-    id: 'faq-5',
-    question: 'What do you need from me to get started?',
-    answer:
-      'A brief summary of your idea or business, any reference links or competitors you like, and your expected target timeline. If you already have existing designs, PRDs, or wireframes, feel free to share them! If not, we can brainstorm and structure everything together.',
-  },
-];
+  return [
+    {
+      id: 'web-app',
+      title: vi ? 'Ứng dụng web full-stack' : 'Full-stack web applications',
+      description: vi ? 'Phát triển nền tảng SaaS, cổng thông tin khách hàng và dashboard quản trị.' : 'SaaS platforms, customer portals, and admin dashboards.',
+      highlights: vi ? [
+        'Frontend với Next.js, React, TypeScript và Tailwind CSS',
+        'Backend với Node.js và NestJS, tích hợp REST API và WebSocket',
+        'Thiết kế cơ sở dữ liệu, migration và caching với PostgreSQL, Prisma và Redis',
+        'Xác thực, phân quyền theo vai trò (RBAC) và tích hợp cổng thanh toán',
+      ] : [
+        'Frontend with Next.js, React, TypeScript, and Tailwind CSS',
+        'Backend with Node.js and NestJS, including REST APIs and WebSocket',
+        'Database design, migrations, and caching with PostgreSQL, Prisma, and Redis',
+        'Authentication, role-based access control (RBAC), and payment integration',
+      ],
+    },
+    {
+      id: 'landing-page',
+      title: 'Landing page',
+      description: vi ? 'Trang giới thiệu sản phẩm hoặc chiến dịch có form thu thập thông tin khách hàng.' : 'Product and campaign pages with lead capture forms.',
+      highlights: vi ? [
+        'Giao diện responsive cho máy tính và thiết bị di động',
+        'Tối ưu Core Web Vitals và technical SEO',
+        'Hiệu ứng cuộn và phản hồi khi tương tác',
+        'Tích hợp form liên hệ và công cụ analytics',
+      ] : [
+        'Responsive layouts for desktop and mobile',
+        'Core Web Vitals and technical SEO',
+        'Scroll animations and interaction feedback',
+        'Contact forms and analytics',
+      ],
+    },
+    {
+      id: 'mobile-app',
+      title: vi ? 'Ứng dụng di động' : 'Mobile applications',
+      description: vi ? 'Phát triển ứng dụng iOS và Android từ cùng một codebase với React Native và Expo.' : 'iOS and Android development from a shared React Native and Expo codebase.',
+      highlights: vi ? [
+        'Giao diện thích ứng với kích thước màn hình và hỗ trợ thao tác cảm ứng',
+        'Lưu trữ offline, push notification và đồng bộ qua API',
+        'Cấu hình build để phát hành trên App Store và Google Play',
+      ] : [
+        'Responsive layouts and touch gestures',
+        'Offline storage, push notifications, and API synchronization',
+        'Build configuration for App Store and Google Play releases',
+      ],
+    },
+    {
+      id: 'figma-design',
+      title: vi ? 'Thiết kế UI/UX trên Figma' : 'UI/UX design in Figma',
+      description: vi ? 'Thiết kế giao diện sản phẩm, prototype và design system.' : 'Product interfaces, prototypes, and design systems.',
+      highlights: vi ? [
+        'Xây dựng user flow, wireframe và giao diện',
+        'Tạo prototype tương tác để kiểm thử',
+        'Thiết lập Auto Layout, design token và component dùng lại',
+        'Bàn giao bản thiết kế, tài nguyên và thông số cho lập trình viên',
+      ] : [
+        'User flows, wireframes, and interface design',
+        'Interactive prototypes for testing',
+        'Auto Layout, design tokens, and reusable components',
+        'Designs, assets, and specifications for developer handoff',
+      ],
+    },
+  ];
+}
+
+export function getFaqs(locale: Locale): FaqItem[] {
+  const vi = locale === 'vi';
+
+  return [
+    {
+      id: 'faq-1',
+      question: vi ? 'Bạn nhận những loại dự án nào?' : 'What kinds of projects do you take on?',
+      answer: vi
+        ? 'Tôi nhận phát triển ứng dụng web full-stack, landing page và ứng dụng iOS, Android. Tôi cũng nhận thiết kế UI/UX trên Figma, làm MVP và thiết kế lại sản phẩm hiện có.'
+        : 'I take on full-stack web apps, landing pages, and iOS and Android apps. I also work on UI/UX design in Figma, MVPs, and redesigns.',
+    },
+    {
+      id: 'faq-2',
+      question: vi ? 'Một dự án thường mất bao lâu?' : 'How long does a project usually take?',
+      answer: vi
+        ? 'Landing page thường mất 1–2 tuần, ứng dụng web hoặc MVP mất 3–6 tuần, còn ứng dụng di động mất 4–8 tuần. Tôi sẽ ước tính lịch cụ thể sau khi trao đổi về phạm vi công việc.'
+        : 'Landing pages usually take 1–2 weeks, web apps and MVPs 3–6 weeks, and mobile apps 4–8 weeks. I confirm the schedule after we discuss the scope.',
+    },
+    {
+      id: 'faq-3',
+      question: vi ? 'Bạn có thể phụ trách cả thiết kế và lập trình không?' : 'Can you handle both design and development?',
+      answer: vi
+        ? 'Có. Tôi có thể phụ trách từ wireframe và prototype trên Figma đến phát triển frontend, backend và triển khai.'
+        : 'Yes. I can handle Figma wireframes and prototypes, frontend and backend development, and deployment.',
+    },
+    {
+      id: 'faq-4',
+      question: vi ? 'Hai bên trao đổi và theo dõi tiến độ thế nào?' : 'How do we communicate and track progress?',
+      answer: vi
+        ? 'Có thể trao đổi qua Slack, Telegram, Discord hoặc email và họp video hằng tuần nếu cần. Tôi chia sẻ file Figma, danh sách công việc và link staging để bạn kiểm tra từng tính năng.'
+        : 'We can use Slack, Telegram, Discord, or email, with a weekly video call if needed. I share Figma files, the task list, and staging links for review.',
+    },
+    {
+      id: 'faq-5',
+      question: vi ? 'Tôi cần chuẩn bị gì để bắt đầu?' : 'What should I prepare to get started?',
+      answer: vi
+        ? 'Bạn có thể gửi tóm tắt dự án, sản phẩm tham khảo và thời gian dự kiến. Nếu đã có bản thiết kế, PRD hoặc wireframe, hãy gửi kèm.'
+        : 'Send a short project brief, any references, and your target timeline. Include any existing designs, PRDs, or wireframes.',
+    },
+  ];
+}

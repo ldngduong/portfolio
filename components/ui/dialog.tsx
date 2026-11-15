@@ -1,5 +1,6 @@
 "use client"
 
+import { usePreferences } from "@/components/common/PreferencesProvider"
 import * as React from "react"
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog"
 import { XIcon } from "lucide-react"
@@ -47,6 +48,7 @@ function DialogContent({
 }: DialogPrimitive.Popup.Props & {
   showCloseButton?: boolean
 }) {
+  const { t } = usePreferences()
   return (
     <DialogPortal>
       <DialogOverlay />
@@ -72,7 +74,7 @@ function DialogContent({
               }
             >
               <XIcon className="w-4 h-4" />
-              <span className="sr-only">Close</span>
+              <span className="sr-only">{t.close}</span>
             </DialogPrimitive.Close>
           )}
         </DialogPrimitive.Popup>

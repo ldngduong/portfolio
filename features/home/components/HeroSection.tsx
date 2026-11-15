@@ -1,5 +1,7 @@
 'use client';
 
+import { usePreferences } from '@/components/common/PreferencesProvider';
+
 import { useState } from 'react';
 import Image from 'next/image';
 import HeroImage from '@/public/hero1hero.webp';
@@ -10,6 +12,7 @@ import Link from 'next/link';
 import { AboutSheet } from '@/features/about/components/AboutSheet';
 
 export function HeroSection() {
+  const { t } = usePreferences();
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
 
@@ -28,7 +31,7 @@ export function HeroSection() {
           <div
             onClick={() => setIsAboutOpen(true)}
             className="group relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full overflow-hidden border border-text-black/15 shrink-0 bg-transparent shadow-sm cursor-pointer transition-transform duration-300 hover:scale-[1.02]"
-            title="View About details"
+            title={t.viewAbout}
           >
             <Image
               src={HeroImage}
@@ -46,7 +49,7 @@ export function HeroSection() {
               <h1
                 onClick={() => setIsAboutOpen(true)}
                 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-text-black leading-tight cursor-pointer hover:opacity-70 transition-opacity inline-block"
-                title="View About details"
+                title={t.viewAbout}
               >
                 Duong Le
               </h1>
@@ -54,7 +57,7 @@ export function HeroSection() {
 
             {/* Role font-bold */}
             <p className="font-bold text-text-black/80">
-              Software Engineer
+              {t.role}
             </p>
 
             {/* Contact Icons đặt dưới Role */}
@@ -62,12 +65,12 @@ export function HeroSection() {
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                aria-label="Copy email"
-                title={emailCopied ? "Copied contact@duongle.dev!" : "Click to copy email"}
+                aria-label={emailCopied ? t.emailCopied : t.copyEmail}
+                title={emailCopied ? t.emailCopied : t.copyEmail}
                 className="hover:text-text-black transition-colors cursor-pointer"
               >
                 {emailCopied ? (
-                  <Check className="w-[18px] h-[18px] text-emerald-600" />
+                  <Check className="w-[18px] h-[18px] text-emerald-600 dark:text-emerald-400" />
                 ) : (
                   <TbMailOpenedFilled className="text-lg sm:text-xl" />
                 )}
@@ -77,7 +80,7 @@ export function HeroSection() {
                 href="https://www.linkedin.com/in/toiladuong/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn profile"
+                aria-label={t.linkedIn}
                 className="hover:text-text-black transition-colors"
               >
                 <FaLinkedin className="text-lg sm:text-xl" />
@@ -89,7 +92,7 @@ export function HeroSection() {
         {/* Bio tóm gọn & Full Width */}
         <div className="w-full">
           <p className="text-base sm:text-lg md:text-xl text-text-black/75 leading-relaxed font-normal">
-            <strong className="font-bold text-text-black">Software Engineer</strong> specializing in building fast, accessible, and scalable digital products. Bridging responsive frontend engineering in <strong className="font-bold text-text-black">Next.js</strong>, <strong className="font-bold text-text-black">React</strong>, and <strong className="font-bold text-text-black">TypeScript</strong> with solid backend architectures in <strong className="font-bold text-text-black">Node.js</strong> and <strong className="font-bold text-text-black">PostgreSQL</strong> — focusing on clean code, performance, and thoughtful user interactions.
+            {t.bio}
           </p>
         </div>
       </section>

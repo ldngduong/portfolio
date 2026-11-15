@@ -11,8 +11,7 @@ export interface FigmaCursorAnimationProps extends React.SVGProps<SVGSVGElement>
   badgeName?: string;
   /**
    * Tùy chỉnh các dòng chữ hiển thị.
-   * Có thể truyền mảng: text={['Have an idea?', `Let's build something`]}
-   * Hoặc chuỗi: text={"Have an idea?\nLet's build something"}
+   * Nhận một mảng hoặc một chuỗi có xuống dòng.
    */
   text?: string | string[];
   /** Alias cho text dạng mảng */

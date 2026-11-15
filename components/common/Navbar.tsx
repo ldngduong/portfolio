@@ -13,8 +13,11 @@ import {
 } from "@/components/ui/sheet";
 import { AboutSheet } from "@/features/about/components/AboutSheet";
 import { ContactDialog } from "@/components/common/ContactDialog";
+import { PreferenceControls } from "@/components/common/PreferenceControls";
+import { usePreferences } from "@/components/common/PreferencesProvider";
 
 export function Navbar() {
+  const { t } = usePreferences();
   const pathname = usePathname();
   const router = useRouter();
   const [isAboutOpen, setIsAboutOpen] = useState(false);
@@ -61,7 +64,7 @@ export function Navbar() {
         id="navbar"
         className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md transition-all border-b border-text-black/5"
       >
-        <nav className="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between w-full">
+        <nav aria-label={t.navigation} className="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3 w-full">
           {/* Logo */}
           <Link
             href="/"
@@ -73,8 +76,8 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation: Home, Project, About, Contact */}
-          <div className="hidden md:block">
-            <ul className="flex items-center gap-4 lg:gap-6 list-none m-0 p-0">
+          <div className="hidden md:block ml-auto">
+            <ul className="flex items-center gap-1 lg:gap-4 list-none m-0 p-0">
               {/* Home */}
               <li>
                 <Link
@@ -82,7 +85,7 @@ export function Navbar() {
                   onClick={handleHomeClick}
                   className="text-base sm:text-lg font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none inline-block cursor-pointer"
                 >
-                  Home
+                  {t.home}
                 </Link>
               </li>
 
@@ -93,7 +96,7 @@ export function Navbar() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-base sm:text-lg font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none inline-block cursor-pointer"
                 >
-                  Project
+                  {t.projects}
                 </Link>
               </li>
 
@@ -103,7 +106,7 @@ export function Navbar() {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-base sm:text-lg font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none inline-block cursor-pointer"
                 >
-                  Freelance
+                  {t.freelance}
                 </Link>
               </li>
 
@@ -114,7 +117,7 @@ export function Navbar() {
                   onClick={openAboutModal}
                   className="text-base sm:text-lg font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none cursor-pointer bg-transparent border-none outline-none inline-block"
                 >
-                  About
+                  {t.about}
                 </button>
               </li>
 
@@ -125,19 +128,21 @@ export function Navbar() {
                   onClick={openContactModal}
                   className="text-base sm:text-lg font-medium text-text-black hover:opacity-60 transition-opacity duration-300 px-2 py-1 select-none cursor-pointer bg-transparent border-none outline-none inline-block"
                 >
-                  Contact
+                  {t.contact}
                 </button>
               </li>
             </ul>
           </div>
 
           {/* Mobile Menu Trigger Button */}
-          <div className="flex md:hidden items-center">
+          <div className="flex items-center gap-2">
+            <PreferenceControls />
             <button
               type="button"
               onClick={() => setIsMobileMenuOpen(true)}
-              className="p-1.5 text-text-black hover:opacity-60 transition-opacity cursor-pointer flex items-center justify-center bg-transparent border-none outline-none"
-              aria-label="Open mobile menu"
+              className="p-1.5 text-text-black hover:opacity-60 transition-opacity cursor-pointer flex md:hidden items-center justify-center bg-transparent border-none"
+              aria-label={t.openMenu}
+              aria-expanded={isMobileMenuOpen}
             >
               <Menu className="w-6 h-6 stroke-[2]" />
             </button>
@@ -152,24 +157,24 @@ export function Navbar() {
           className="w-[82vw] max-w-sm h-full flex flex-col justify-between p-6 sm:p-8 bg-background border-l border-text-black/10 z-50
           [&>button]:bg-text-black/5 [&>button]:hover:bg-text-black/15 [&>button]:border-none [&>button]:rounded-full [&>button]:z-50 [&>button]:top-4 [&>button]:right-4 transition-all"
         >
-          <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
+          <SheetTitle className="sr-only">{t.navigation}</SheetTitle>
 
           {/* Top Branding */}
           <div className="pt-2">
             <div className="text-xl font-bold tracking-tight text-text-black select-none">
               Duong<span className="text-text-black/50">Le</span>
             </div>
-            <p className="text-xs text-text-black/50 mt-0.5">Software Engineer</p>
+            <p className="text-xs text-text-black/60 mt-0.5">{t.role}</p>
           </div>
 
           {/* Middle Nav Links */}
-          <nav className="flex flex-col gap-5 py-8" aria-label="Mobile main navigation">
+          <nav className="flex flex-col gap-5 py-8" aria-label={t.navigation}>
             <Link
               href="/"
               onClick={handleHomeClick}
               className="text-2xl sm:text-3xl font-medium text-text-black text-left hover:opacity-60 transition-opacity cursor-pointer"
             >
-              Home
+              {t.home}
             </Link>
 
             <Link
@@ -177,7 +182,15 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
               className="text-2xl sm:text-3xl font-medium text-text-black text-left hover:opacity-60 transition-opacity cursor-pointer"
             >
-              Project
+              {t.projects}
+            </Link>
+
+            <Link
+              href="/freelance"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-2xl sm:text-3xl font-medium text-text-black text-left hover:opacity-60 transition-opacity cursor-pointer"
+            >
+              {t.freelance}
             </Link>
 
             <button
@@ -185,7 +198,7 @@ export function Navbar() {
               onClick={openAboutModal}
               className="text-2xl sm:text-3xl font-medium text-text-black text-left hover:opacity-60 transition-opacity cursor-pointer"
             >
-              About
+              {t.about}
             </button>
 
             <button
@@ -193,7 +206,7 @@ export function Navbar() {
               onClick={openContactModal}
               className="text-2xl sm:text-3xl font-medium text-text-black text-left hover:opacity-60 transition-opacity cursor-pointer"
             >
-              Contact
+              {t.contact}
             </button>
           </nav>
 
@@ -203,12 +216,12 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={handleCopyEmail}
-                aria-label="Email Duong Le"
-                title={emailCopied ? "Copied contact@duongle.dev!" : "Click to copy email"}
+                aria-label={emailCopied ? t.emailCopied : t.copyEmail}
+                title={emailCopied ? t.emailCopied : t.copyEmail}
                 className="hover:opacity-60 transition-opacity cursor-pointer"
               >
                 {emailCopied ? (
-                  <Check className="w-6 h-6 text-emerald-600" />
+                  <Check className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
                 ) : (
                   <TbMailOpenedFilled className="text-2xl" />
                 )}
@@ -217,7 +230,7 @@ export function Navbar() {
                 href="https://www.linkedin.com/in/toiladuong/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn Profile"
+                aria-label={t.linkedIn}
                 className="hover:opacity-60 transition-opacity"
               >
                 <FaLinkedin className="text-2xl" />

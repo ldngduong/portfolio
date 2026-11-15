@@ -1,5 +1,7 @@
 'use client';
 
+import { usePreferences } from '@/components/common/PreferencesProvider';
+
 import { CardCornerPixelBloom } from '@/components/common/CardCornerPixelBloom';
 import {
   SiNextdotjs,
@@ -26,33 +28,35 @@ interface SkillBadge {
   color?: string;
 }
 
+type SkillCategoryTitle = 'frontend' | 'backendAndDatabase' | 'design' | 'developmentTools';
+
 interface SkillCategory {
-  title: string;
+  title: SkillCategoryTitle;
   skills: SkillBadge[];
 }
 
 const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: 'FRONTEND',
+    title: 'frontend',
     skills: [
-      { name: 'Next.js', icon: SiNextdotjs, color: '#000000' },
+      { name: 'Next.js', icon: SiNextdotjs, color: 'currentColor' },
       { name: 'React', icon: SiReact, color: '#00D8FF' },
       { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
       { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#38BDF8' },
-      { name: 'shadcn/ui', icon: SiShadcnui, color: '#000000' },
+      { name: 'shadcn/ui', icon: SiShadcnui, color: 'currentColor' },
     ],
   },
   {
-    title: 'BACKEND & DATABASE',
+    title: 'backendAndDatabase',
     skills: [
       { name: 'NestJS', icon: SiNestjs, color: '#E0234E' },
-      { name: 'Socket.io', icon: SiSocketdotio, color: '#171717' },
+      { name: 'Socket.io', icon: SiSocketdotio, color: 'currentColor' },
       { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
       { name: 'Redis', icon: SiRedis, color: '#DC382D' },
     ],
   },
   {
-    title: 'UI/UX & DESIGN',
+    title: 'design',
     skills: [
       { name: 'Figma', icon: SiFigma, color: '#F24E1E' },
       { name: 'Design Systems', icon: LuLayoutTemplate, color: '#8B5CF6' },
@@ -60,7 +64,7 @@ const SKILL_CATEGORIES: SkillCategory[] = [
     ],
   },
   {
-    title: 'DEVELOPMENT TOOLS',
+    title: 'developmentTools',
     skills: [
       { name: 'Git', icon: SiGit, color: '#F05032' },
 
@@ -71,22 +75,23 @@ const SKILL_CATEGORIES: SkillCategory[] = [
 ];
 
 export function SkillsSection() {
+  const { t } = usePreferences();
   return (
     <section className="relative flex flex-col w-full bg-transparent select-none space-y-5 sm:space-y-6">
       {/* Title Skills */}
       <div className="w-full flex items-center justify-between">
         <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-text-black">
-          Skills
+          {t.skills}
         </h2>
       </div>
 
       {/* List Badges Container với hiệu ứng Pixel Bloom luôn hiện ở góc phải dưới */}
-      <div className="group relative overflow-hidden w-full p-5 sm:p-6 rounded-2xl border border-text-black/10 bg-white/70 shadow-sm">
+      <div className="group relative overflow-hidden w-full p-5 sm:p-6 rounded-2xl border border-text-black/10 bg-card/70 shadow-sm">
         <CardCornerPixelBloom alwaysActive />
 
         <div className="relative z-10 w-full space-y-6 sm:space-y-7">
           {SKILL_CATEGORIES.map((category) => (
-            <div key={category.title} className="space-y-2.5">
+            <div key={category.title === 'frontend' ? 'Frontend' : t[category.title]} className="space-y-2.5">
               {/* Category Subtitle */}
               <h3 className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-text-black/50">
                 {category.title}
@@ -98,8 +103,8 @@ export function SkillsSection() {
                   const Icon = skill.icon;
                   return (
                     <div
-                      key={skill.name}
-                      className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl border border-dashed border-text-black/15 bg-white/90 hover:bg-white hover:border-solid hover:border-text-black/40 hover:shadow-sm transition-all duration-200 cursor-default select-none group/badge"
+                      key={skill.name === 'Responsive Layouts' ? t.responsiveLayouts : skill.name}
+                      className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-xl border border-dashed border-text-black/15 bg-card/90 hover:bg-card hover:border-solid hover:border-text-black/40 hover:shadow-sm transition-all duration-200 cursor-default select-none group/badge"
                     >
                       <Icon
                         className="text-base sm:text-lg shrink-0 transition-transform duration-200 group-hover/badge:scale-110"

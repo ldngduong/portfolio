@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Navbar } from '@/components/common/Navbar';
+import { copy } from '@/lib/copy';
+import { getPreferences } from '@/lib/server-preferences';
 import {
   FreelanceHero,
   ServicesSection,
@@ -7,15 +9,15 @@ import {
   FreelanceCtaSection,
 } from '@/features/freelance';
 
-export const metadata: Metadata = {
-  title: 'Freelance & Services — Duong Le',
-  description:
-    'Full-cycle design & engineering partner for startups and businesses. Offering Web Applications, high-converting Landing Pages, cross-platform Mobile Apps, and pixel-perfect Figma UI/UX design.',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { locale } = await getPreferences();
+  const t = copy[locale];
+  return { title: `${t.freelanceHeading} — Duong Le`, description: t.freelanceDescription };
+}
 
 export default function FreelancePage() {
   return (
-    <div className="min-h-screen bg-background text-text-black selection:bg-text-black selection:text-white">
+    <div className="min-h-screen text-text-black selection:bg-primary selection:text-primary-foreground">
       {/* Sticky Header */}
       <Navbar />
 
